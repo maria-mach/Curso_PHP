@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 2 · Fundamentos do JavaScript</title><link rel="stylesheet" href="../assets/style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 2 · JavaScript e DOM</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head>
 <body>
     <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-3.html">Próxima semana</a></nav></header>
     <main>
-        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 2</a><h1>Fundamentos do JavaScript</h1><p>Aprenda a representar informações, fazer comparações, repetir operações e organizar a lógica em funções.</p></header>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 2</a><h1>JavaScript e DOM</h1><p>Aprenda os fundamentos da linguagem e use o DOM para selecionar elementos, alterar a página e responder às ações da pessoa usuária.</p></header>
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#conceitos">Conceitos</a><a href="#decisoes">Decisões</a><a href="#repeticoes">Repetições</a><a href="#funcoes">Funções</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#conceitos">Conceitos</a><a href="#decisoes">Decisões</a><a href="#repeticoes">Repetições</a><a href="#funcoes">Funções</a><a href="#dom">DOM</a><a href="#eventos">Eventos</a><a href="#revisao">Revisão</a><a href="#pratica">Prática</a></aside>
             <article class="study-article">
                 <section id="conceitos"><p class="eyebrow">Dados e operações</p><h2>Variáveis, tipos e operadores</h2><p>Variáveis armazenam valores que serão utilizados pelo programa. Em JavaScript moderno, <code>const</code> é usada quando a referência não será reatribuída e <code>let</code> quando o valor poderá mudar.</p><div class="concept-grid"><div class="concept"><strong>String</strong><p>Texto, como nome, categoria ou mensagem.</p></div><div class="concept"><strong>Number</strong><p>Números inteiros ou decimais usados em cálculos.</p></div><div class="concept"><strong>Boolean</strong><p>Representa apenas verdadeiro ou falso.</p></div><div class="concept"><strong>Array</strong><p>Agrupa diversos valores em uma lista ordenada.</p></div></div><pre><code>const curso = "Full Stack";
 let semanasConcluidas = 2;
@@ -32,7 +32,34 @@ for (const tecnologia of tecnologias) {
 
 const resultado = calcularProgresso(3, 8);
 console.log(`${resultado}%`);</code></pre><div class="note"><strong>Importante:</strong> pratique cada estrutura separadamente e acompanhe os resultados pelo console do navegador.</div></section>
-                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Calculadora de progresso</h2><p>Crie um arquivo <code>script.js</code> que receba a quantidade de semanas concluídas, calcule o percentual e mostre uma mensagem diferente para início, andamento e conclusão do curso. Execute e confira os resultados pelo console.</p></section>
+                <section id="dom"><p class="eyebrow">Página interativa</p><h2>O que é o DOM</h2><p>Quando o navegador lê o HTML, ele cria uma representação organizada do documento chamada DOM, sigla para Document Object Model. Cada título, parágrafo, botão ou campo passa a ser um objeto que o JavaScript pode localizar e modificar.</p><p>O método <code>document.querySelector()</code> procura o primeiro elemento que corresponde a um seletor CSS. Por isso, a mesma forma de identificar tags, classes e IDs aprendida no CSS também é usada pelo JavaScript.</p><pre><code>const titulo = document.querySelector('h1');
+const cartao = document.querySelector('.cartao');
+const mensagem = document.querySelector('#mensagem');
+
+titulo.textContent = 'Projeto atualizado';
+cartao.classList.add('destaque');
+mensagem.setAttribute('aria-live', 'polite');</code></pre><div class="concept-grid"><div class="concept"><strong><code>textContent</code></strong><p>Lê ou substitui o conteúdo textual de um elemento.</p></div><div class="concept"><strong><code>classList</code></strong><p>Adiciona, remove ou alterna classes CSS.</p></div><div class="concept"><strong><code>setAttribute()</code></strong><p>Define ou modifica um atributo HTML.</p></div><div class="concept"><strong><code>value</code></strong><p>Acessa o valor atual de campos de formulário.</p></div></div><p>Antes de alterar um elemento, confirme que ele foi encontrado. Um seletor incorreto pode retornar <code>null</code>, indicando que nenhum elemento correspondente existe na página.</p></section>
+                <section id="eventos"><p class="eyebrow">Ações da pessoa usuária</p><h2>Eventos e <code>addEventListener()</code></h2><p>Um evento informa que algo aconteceu na página. O JavaScript pode aguardar esse acontecimento e executar uma função em resposta. Entre os eventos mais comuns estão <code>click</code>, <code>input</code> e <code>submit</code>.</p><pre><code>const botao = document.querySelector('#mostrar-mensagem');
+const mensagem = document.querySelector('#mensagem');
+
+botao.addEventListener('click', function () {
+    mensagem.textContent = 'Conteúdo atualizado com JavaScript!';
+    mensagem.classList.toggle('destaque');
+});</code></pre><p>No exemplo, o botão é selecionado pelo ID. Quando ocorre o clique, a função altera o texto e alterna uma classe. O HTML define os elementos, o CSS define a aparência da classe e o JavaScript coordena a interação.</p><h3>Eventos em formulários</h3><pre><code>const formulario = document.querySelector('#cadastro');
+const nome = document.querySelector('#nome');
+
+formulario.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    if (nome.value.trim() === '') {
+        alert('Informe seu nome.');
+        return;
+    }
+
+    console.log(`Cadastro enviado por ${nome.value}`);
+});</code></pre><p>O evento <code>submit</code> acontece quando o formulário é enviado. <code>preventDefault()</code> interrompe temporariamente o comportamento padrão para que os dados possam ser conferidos. Essa validação melhora a experiência, mas aplicações reais também precisam validar os dados no servidor.</p></section>
+                <section id="revisao"><p class="eyebrow">Síntese</p><h2>Conecte linguagem e interface</h2><div class="concept-grid"><div class="concept"><strong>Dados</strong><p>Use variáveis e tipos adequados para representar informações.</p></div><div class="concept"><strong>Lógica</strong><p>Combine operadores, condições, repetições e funções.</p></div><div class="concept"><strong>Seleção</strong><p>Localize elementos do DOM por tag, classe ou ID.</p></div><div class="concept"><strong>Alteração</strong><p>Modifique texto, atributos, classes e valores com propósito.</p></div><div class="concept"><strong>Eventos</strong><p>Associe funções a ações como clique, digitação e envio.</p></div><div class="concept"><strong>Verificação</strong><p>Use o console para acompanhar valores e identificar erros.</p></div></div></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Adicione interação ao projeto</h2><ol><li>Crie no HTML um campo de texto, um botão e uma área de mensagem.</li><li>Selecione os três elementos com <code>querySelector()</code>.</li><li>Use o evento <code>input</code> para acompanhar o valor digitado.</li><li>Use o evento <code>click</code> para atualizar o texto da mensagem e alternar uma classe CSS.</li><li>Inclua um formulário e trate o evento <code>submit</code>, impedindo o envio quando o campo estiver vazio.</li><li>Acompanhe os valores pelo console e teste seletores incorretos para compreender o retorno <code>null</code>.</li></ol></section>
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-1.html">Semana 1: HTML e CSS</a><a href="semana-3.html">Semana 3: Git e PHP</a></nav>
             </article>
         </div>

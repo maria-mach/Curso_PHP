@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 5 · GET, POST, sessões e MySQL</title><link rel="stylesheet" href="../assets/style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 5 · GET, POST, sessões e MySQL</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head>
 <body>
     <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-6.html">Próxima semana</a></nav></header>
     <main>
         <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 5</a><h1>GET, POST, validação, sessões e MySQL</h1><p>Compreenda como dados chegam ao servidor, permanecem entre páginas e são organizados em um banco relacional.</p></header>
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#requisicoes">GET e POST</a><a href="#validacao">Validação</a><a href="#sessoes">Sessões</a><a href="#mysql">MySQL</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#requisicoes">GET e POST</a><a href="#validacao">Validação</a><a href="#sessoes">Sessões</a><a href="#mysql">MySQL</a><a href="#relacoes">Relações</a><a href="#pratica">Prática</a></aside>
             <article class="study-article">
                 <section id="requisicoes"><p class="eyebrow">Requisições</p><h2>Diferença entre GET e POST</h2><div class="concept-grid"><div class="concept"><strong>GET</strong><p>Envia parâmetros pela URL. É adequado para buscas, filtros e páginas que podem ser compartilhadas.</p></div><div class="concept"><strong>POST</strong><p>Envia dados no corpo da requisição. É utilizado em cadastros e alterações.</p></div></div><pre><code>&lt;?php
 $busca = trim($_GET['busca'] ?? '');
@@ -37,6 +37,12 @@ INSERT INTO tecnologias (nome, categoria)
 VALUES ('PHP', 'Back-end');
 
 SELECT * FROM tecnologias ORDER BY nome;</code></pre><p>As operações principais são <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code> e <code>DELETE</code>.</p></section>
+                <section id="relacoes"><p class="eyebrow">Organização dos dados</p><h2>Chaves e relacionamentos</h2><p>A chave primária identifica cada registro sem depender de valores que podem se repetir. Quando uma tabela precisa apontar para outra, utiliza uma chave estrangeira. Assim, um projeto pode pertencer a uma categoria sem repetir todos os dados da categoria em cada linha.</p><pre><code>CREATE TABLE projetos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(120) NOT NULL,
+    categoria_id INT NOT NULL,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+);</code></pre><p>Antes de criar tabelas, determine o tipo de cada dado, quais campos são obrigatórios e quais relações existem. Use <code>VARCHAR</code> para textos curtos, <code>TEXT</code> para descrições maiores e <code>INT</code> para inteiros.</p><h3>Sessão não é banco de dados</h3><p>A sessão guarda temporariamente informações ligadas à navegação, como o identificador de quem entrou. O banco mantém registros que precisam continuar existindo depois que a sessão ou o navegador forem encerrados.</p><div class="note"><strong>Revise:</strong> compare GET e POST, explique por que ambos exigem validação, diferencie sessão de persistência e reconheça chave primária, chave estrangeira e as quatro operações de dados.</div></section>
                 <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Modele os dados do projeto</h2><ol><li>Identifique quais informações precisam permanecer salvas.</li><li>Crie uma tabela com chave primária e campos obrigatórios.</li><li>Insira alguns registros pelo phpMyAdmin.</li><li>Execute consultas de seleção, atualização e exclusão.</li><li>Registre o script de criação em um arquivo SQL.</li></ol></section>
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-4.html">Semana 4: PHP e formulários</a><a href="semana-6.html">Semana 6: PHP e CRUD</a></nav>
             </article>

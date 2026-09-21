@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 7 · CRUD e autenticação</title><link rel="stylesheet" href="../assets/style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 7 · CRUD e autenticação</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head>
 <body>
     <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-8.html">Próxima semana</a></nav></header>
     <main>
         <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 7</a><h1>CRUD e autenticação</h1><p>Proteja o acesso à aplicação utilizando cadastro de usuários, senhas seguras, sessões e autorização.</p></header>
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#conceitos">Conceitos</a><a href="#senhas">Senhas</a><a href="#login">Login</a><a href="#acesso">Acesso</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#conceitos">Conceitos</a><a href="#senhas">Senhas</a><a href="#login">Login</a><a href="#acesso">Acesso</a><a href="#ciclo">Ciclo da conta</a><a href="#pratica">Prática</a></aside>
             <article class="study-article">
                 <section id="conceitos"><p class="eyebrow">Identidade e permissão</p><h2>Autenticação e autorização</h2><div class="concept-grid"><div class="concept"><strong>Autenticação</strong><p>Confirma quem está tentando entrar no sistema.</p></div><div class="concept"><strong>Autorização</strong><p>Define o que uma pessoa autenticada pode acessar ou alterar.</p></div><div class="concept"><strong>Sessão</strong><p>Mantém a identificação durante a navegação.</p></div><div class="concept"><strong>Perfil</strong><p>Agrupa permissões, como aluno e professor.</p></div></div></section>
                 <section id="senhas"><p class="eyebrow">Armazenamento seguro</p><h2>Nunca salve senhas em texto puro</h2><p>O banco deve armazenar somente o hash produzido por <code>password_hash()</code>. O valor original não deve ser recuperável.</p><pre><code>&lt;?php
@@ -43,6 +43,13 @@ if ($_SESSION['usuario']['perfil'] !== 'professor') {
     http_response_code(403);
     exit('Acesso não autorizado.');
 }</code></pre><div class="note"><strong>Privacidade:</strong> colete somente os dados necessários, encerre sessões corretamente e utilize HTTPS em produção.</div></section>
+                <section id="ciclo"><p class="eyebrow">Fluxo seguro</p><h2>Do cadastro à saída</h2><ol><li>No cadastro, valide nome, usuário e senha e impeça usuários duplicados.</li><li>Transforme a senha com <code>password_hash()</code> antes de gravá-la.</li><li>No login, localize o registro pelo usuário e compare com <code>password_verify()</code>.</li><li>Após o sucesso, regenere o identificador da sessão e armazene somente os dados necessários.</li><li>Em toda página protegida, verifique autenticação e permissão antes de executar ações.</li><li>Na saída, limpe os dados e destrua a sessão.</li></ol><pre><code>&lt;?php
+session_start();
+$_SESSION = [];
+session_destroy();
+
+header('Location: login.php');
+exit;</code></pre><p>Uma mensagem genérica como “usuário ou senha inválidos” evita revelar qual parte estava correta. Limites de tentativas, HTTPS e cookies de sessão configurados com segurança aumentam a proteção em produção.</p><div class="note"><strong>Revise:</strong> diferencie autenticação de autorização, explique por que hashes não são senhas criptografadas e descreva o papel da sessão no controle de acesso.</div></section>
                 <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Proteja o CRUD</h2><p>Crie cadastro e login utilizando somente nome, usuário e senha. Proteja as páginas de alteração e exclusão, implemente saída da conta e teste tentativas de acesso sem sessão.</p></section>
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-6.html">Semana 6: PHP e CRUD</a><a href="semana-8.html">Semana 8: API REST</a></nav>
             </article>

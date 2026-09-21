@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 8 · API REST e projeto integrador</title><link rel="stylesheet" href="../assets/style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 8 · API REST e projeto integrador</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head>
 <body>
     <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="../index.html">Página inicial</a></nav></header>
     <main>
         <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 8</a><h1>API REST e projeto integrador</h1><p>Integre sistemas por meio de endpoints e JSON, revise a aplicação completa e prepare a entrega final.</p></header>
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#api">API REST</a><a href="#http">HTTP</a><a href="#json">JSON</a><a href="#projeto">Projeto final</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#api">API REST</a><a href="#http">HTTP</a><a href="#json">JSON</a><a href="#resposta">Respostas</a><a href="#projeto">Projeto final</a><a href="#pratica">Prática</a></aside>
             <article class="study-article">
                 <section id="api"><p class="eyebrow">Integração</p><h2>O que é uma API REST</h2><p>Uma API permite que aplicações troquem informações. Em uma API REST, recursos são representados por endereços chamados endpoints e manipulados por métodos HTTP.</p><pre><code>GET    /api/tecnologias
 GET    /api/tecnologias/10
@@ -27,6 +27,23 @@ echo json_encode($dados, JSON_UNESCAPED_UNICODE);</code></pre><p>No cliente, a r
     .then(resposta =&gt; resposta.json())
     .then(dados =&gt; console.log(dados))
     .catch(erro =&gt; console.error(erro));</code></pre></section>
+                <section id="resposta"><p class="eyebrow">Contrato da API</p><h2>Uma resposta previsível</h2><p>Uma API deve combinar conteúdo, código HTTP e cabeçalho adequados. O código informa o resultado geral; o JSON transporta os dados ou uma mensagem que o cliente consegue interpretar.</p><pre><code>&lt;?php
+header('Content-Type: application/json; charset=utf-8');
+http_response_code(201);
+
+echo json_encode([
+    'sucesso' =&gt; true,
+    'mensagem' =&gt; 'Tecnologia cadastrada',
+    'id' =&gt; 12
+]);</code></pre><p>Um endpoint identifica um recurso, não uma ação visual. Por isso, endereços como <code>/api/projetos</code> são combinados aos métodos HTTP. Antes de devolver dados, a API deve validar a entrada, verificar autorização, tratar falhas e evitar expor detalhes internos do servidor.</p><h3>Consumo pelo front-end</h3><p><code>fetch()</code> inicia a requisição e retorna uma promessa. A resposta deve ser conferida antes de usar os dados. Depois de converter o JSON, a interface pode atualizar seu conteúdo por meio do DOM ou apresentar uma mensagem de erro.</p><pre><code>fetch('/api/tecnologias')
+    .then(resposta =&gt; {
+        if (!resposta.ok) {
+            throw new Error('Não foi possível carregar os dados');
+        }
+        return resposta.json();
+    })
+    .then(dados =&gt; console.log(dados))
+    .catch(erro =&gt; console.error(erro.message));</code></pre><div class="note"><strong>Revise:</strong> relacione recursos, endpoints, métodos e códigos HTTP; reconheça a estrutura do JSON; e explique como front-end, API, PHP e banco participam do mesmo fluxo.</div></section>
                 <section id="projeto"><p class="eyebrow">Entrega final</p><h2>Integração do projeto</h2><p>A versão final deve demonstrar a conexão entre as partes estudadas:</p><ol><li>Interface estruturada com HTML e estilizada com CSS.</li><li>Lógica organizada em JavaScript e PHP.</li><li>Dados persistidos em MySQL por consultas preparadas.</li><li>CRUD completo e formulários validados.</li><li>Autenticação com hash de senha e controle de acesso.</li><li>Um endpoint criado ou consumido pela aplicação.</li></ol><div class="note"><strong>Antes da entrega:</strong> teste os principais caminhos, trate erros, remova credenciais do repositório e confira a aplicação em telas diferentes.</div></section>
                 <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Finalize e apresente a aplicação</h2><p>Revise o projeto como uma pessoa usuária: cadastre um registro, consulte, edite, exclua, entre e saia da conta e teste a integração da API. Documente no README o objetivo, as tecnologias, a instalação e as decisões principais.</p></section>
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-7.html">Semana 7: Autenticação</a><a href="../index.html">Voltar ao início</a></nav>

@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 4 · PHP e formulários</title><link rel="stylesheet" href="../assets/style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 4 · PHP e formulários</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head>
 <body>
     <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-5.html">Próxima semana</a></nav></header>
     <main>
         <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 4</a><h1>Fundamentos do PHP e formulários</h1><p>Utilize variáveis, decisões, repetições, arrays e funções para processar informações enviadas por formulários.</p></header>
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#linguagem">Linguagem</a><a href="#arrays">Arrays</a><a href="#funcoes">Funções</a><a href="#formularios">Formulários</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#linguagem">Linguagem</a><a href="#arrays">Arrays</a><a href="#funcoes">Funções</a><a href="#formularios">Formulários</a><a href="#processamento">Processamento</a><a href="#pratica">Prática</a></aside>
             <article class="study-article">
                 <section id="linguagem"><p class="eyebrow">Fundamentos</p><h2>Variáveis e estruturas de controle</h2><p>Em PHP, variáveis começam com <code>$</code>. A linguagem oferece condições e repetições semelhantes às encontradas em JavaScript.</p><pre><code>&lt;?php
 $nome = 'Maria';
@@ -41,6 +41,7 @@ if ($nome === '') {
 }
 
 echo 'Olá, ' . htmlspecialchars($nome);</code></pre><div class="note"><strong>Segurança básica:</strong> nunca confie automaticamente em dados recebidos. Valide a entrada e use <code>htmlspecialchars()</code> antes de apresentar textos no HTML.</div></section>
+                <section id="processamento"><p class="eyebrow">Caminho dos dados</p><h2>Do formulário até a resposta</h2><p>Um campo só é enviado quando possui o atributo <code>name</code>. Ao submeter o formulário, o navegador cria pares de nome e valor. O PHP acessa esses pares em <code>$_POST</code> ou <code>$_GET</code>, aplica as regras necessárias e produz uma resposta.</p><div class="concept-grid"><div class="concept"><strong>Receber</strong><p>Use o nome do campo para localizar o valor enviado.</p></div><div class="concept"><strong>Normalizar</strong><p><code>trim()</code> remove espaços desnecessários do início e do fim.</p></div><div class="concept"><strong>Validar</strong><p>Confira campos obrigatórios, formato e limites permitidos.</p></div><div class="concept"><strong>Exibir</strong><p>Proteja textos com <code>htmlspecialchars()</code> ao inseri-los no HTML.</p></div></div><p>Condições escolhem respostas diferentes, repetições percorrem listas e funções evitam duplicar regras. Esses fundamentos se combinam no processamento de praticamente todo formulário.</p><div class="note"><strong>Revise:</strong> identifique variáveis, tipos, operadores, condicionais, laços, arrays e funções, e explique a função de <code>action</code>, <code>method</code> e <code>name</code>.</div></section>
                 <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Formulário de cadastro de tecnologia</h2><p>Crie um formulário com nome da tecnologia, categoria e descrição. Processe os dados em PHP, valide campos vazios e apresente um resumo utilizando saída protegida.</p></section>
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-3.html">Semana 3: Git e PHP</a><a href="semana-5.html">Semana 5: Dados e MySQL</a></nav>
             </article>
