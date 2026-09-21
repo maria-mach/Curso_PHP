@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 4 · PHP e formulários</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-5.html">Próxima semana</a></nav></header>
+    <main>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 4</a><h1>Fundamentos do PHP e formulários</h1><p>Utilize variáveis, decisões, repetições, arrays e funções para processar informações enviadas por formulários.</p></header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#linguagem">Linguagem</a><a href="#arrays">Arrays</a><a href="#funcoes">Funções</a><a href="#formularios">Formulários</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="linguagem"><p class="eyebrow">Fundamentos</p><h2>Variáveis e estruturas de controle</h2><p>Em PHP, variáveis começam com <code>$</code>. A linguagem oferece condições e repetições semelhantes às encontradas em JavaScript.</p><pre><code>&lt;?php
+$nome = 'Maria';
+$nota = 8.5;
+
+if ($nota &gt;= 7) {
+    echo "$nome atingiu o resultado esperado.";
+} else {
+    echo "$nome deve revisar o conteúdo.";
+}</code></pre></section>
+                <section id="arrays"><p class="eyebrow">Coleções</p><h2>Arrays e repetição</h2><p>Arrays armazenam diversos valores. Com <code>foreach</code>, cada item pode ser processado sem repetir manualmente as instruções.</p><pre><code>&lt;?php
+$tecnologias = ['HTML', 'CSS', 'JavaScript', 'PHP'];
+
+foreach ($tecnologias as $tecnologia) {
+    echo "&lt;li&gt;" . htmlspecialchars($tecnologia) . "&lt;/li&gt;";
+}</code></pre></section>
+                <section id="funcoes"><p class="eyebrow">Reutilização</p><h2>Funções</h2><p>Uma função reúne uma responsabilidade específica e pode ser utilizada diversas vezes.</p><pre><code>&lt;?php
+function calcularProgresso(int $concluidas, int $total): int {
+    return (int) round(($concluidas / $total) * 100);
+}
+
+echo calcularProgresso(4, 8) . '%';</code></pre></section>
+                <section id="formularios"><p class="eyebrow">Entrada de dados</p><h2>HTML e PHP trabalhando juntos</h2><p>O atributo <code>action</code> indica quem processará o formulário, enquanto <code>method</code> determina como os dados serão enviados.</p><pre><code>&lt;form method="post" action="processar.php"&gt;
+    &lt;label for="nome"&gt;Nome&lt;/label&gt;
+    &lt;input id="nome" name="nome" required&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre><pre><code>&lt;?php
+$nome = trim($_POST['nome'] ?? '');
+
+if ($nome === '') {
+    exit('Informe o nome.');
+}
+
+echo 'Olá, ' . htmlspecialchars($nome);</code></pre><div class="note"><strong>Segurança básica:</strong> nunca confie automaticamente em dados recebidos. Valide a entrada e use <code>htmlspecialchars()</code> antes de apresentar textos no HTML.</div></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Formulário de cadastro de tecnologia</h2><p>Crie um formulário com nome da tecnologia, categoria e descrição. Processe os dados em PHP, valide campos vazios e apresente um resumo utilizando saída protegida.</p></section>
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-3.html">Semana 3: Git e PHP</a><a href="semana-5.html">Semana 5: Dados e MySQL</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 4 de 8</p></footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Semana 1 · HTML, CSS e JavaScript</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a>
+        <nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-2.html">Próxima semana</a></nav>
+    </header>
+    <main>
+        <header class="content-hero">
+            <a class="breadcrumb" href="../index.html#programa">Curso / Semana 1</a>
+            <h1>HTML, CSS e introdução ao JavaScript</h1>
+            <p>Entenda as três tecnologias fundamentais do front-end e construa a primeira página do projeto integrador.</p>
+        </header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#visao">Visão geral</a><a href="#html">HTML</a><a href="#css">CSS</a><a href="#javascript">JavaScript</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="visao">
+                    <p class="eyebrow">Visão geral</p>
+                    <h2>Como uma página web é construída</h2>
+                    <p>Uma página pode ser entendida em três camadas. O HTML organiza o conteúdo, o CSS define a aparência e o JavaScript acrescenta regras e comportamentos. Nesta etapa, o foco principal está na estrutura e na apresentação.</p>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>HTML</strong><p>Define títulos, parágrafos, links, imagens, listas e seções.</p></div>
+                        <div class="concept"><strong>CSS</strong><p>Controla cores, fontes, tamanhos, espaçamentos e organização visual.</p></div>
+                        <div class="concept"><strong>JavaScript</strong><p>Executa cálculos, validações e regras no navegador.</p></div>
+                        <div class="concept"><strong>Navegador</strong><p>Interpreta os arquivos e apresenta o resultado para a pessoa usuária.</p></div>
+                    </div>
+                </section>
+
+                <section id="html">
+                    <p class="eyebrow">Estrutura</p>
+                    <h2>Primeiros passos com HTML</h2>
+                    <p>HTML significa HyperText Markup Language. Ele utiliza elementos para indicar a função de cada parte do conteúdo. Uma estrutura básica contém a declaração do documento, a área de configurações e o conteúdo visível.</p>
+                    <pre><code>&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;Meu projeto&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;&lt;h1&gt;Meu projeto web&lt;/h1&gt;&lt;/header&gt;
+    &lt;main&gt;
+        &lt;h2&gt;Sobre&lt;/h2&gt;
+        &lt;p&gt;Esta é a primeira versão da página.&lt;/p&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <p>Prefira elementos semânticos como <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code> e <code>footer</code>. Eles tornam a estrutura mais compreensível para navegadores, mecanismos de busca e tecnologias assistivas.</p>
+                </section>
+
+                <section id="css">
+                    <p class="eyebrow">Apresentação</p>
+                    <h2>Estilização com CSS</h2>
+                    <p>Uma regra CSS possui um seletor e um conjunto de propriedades. O seletor indica o elemento que será estilizado; as propriedades descrevem como ele deve aparecer.</p>
+                    <pre><code>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fbf8fa;
+    color: #302833;
+}
+
+main {
+    width: min(900px, 90%);
+    margin: 0 auto;
+}
+
+h1 {
+    color: #642640;
+}</code></pre>
+                    <div class="note"><strong>Boa prática:</strong> mantenha o conteúdo no HTML e a apresentação no arquivo CSS. Isso facilita alterações e evita repetição.</div>
+                </section>
+
+                <section id="javascript">
+                    <p class="eyebrow">Comportamento</p>
+                    <h2>O papel do JavaScript</h2>
+                    <p>JavaScript é uma linguagem de programação executada pelo navegador. Neste primeiro contato, basta compreender que ela pode armazenar valores, realizar cálculos e tomar decisões.</p>
+                    <pre><code>const nomeDoCurso = "Desenvolvimento Web Full Stack";
+const cargaHoraria = 40;
+
+console.log(nomeDoCurso);
+console.log(`Carga horária: ${cargaHoraria} horas`);</code></pre>
+                    <p>O resultado pode ser observado no console das ferramentas de desenvolvimento do navegador.</p>
+                </section>
+
+                <section class="practice" id="pratica">
+                    <p class="eyebrow">Prática sugerida</p>
+                    <h2>Crie a página inicial do projeto</h2>
+                    <ol><li>Crie uma pasta com os arquivos <code>index.html</code> e <code>style.css</code>.</li><li>Adicione cabeçalho, navegação, conteúdo principal e rodapé.</li><li>Apresente o nome, o objetivo e as principais funções do projeto.</li><li>Defina cores, tipografia, largura máxima e espaçamentos.</li><li>Abra a página em tamanhos diferentes e verifique a leitura.</li></ol>
+                </section>
+
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><span class="disabled">Semana anterior</span><a href="semana-2.html">Semana 2: JavaScript</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 1 de 8</p></footer>
+</body>
+</html>

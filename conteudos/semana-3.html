@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 3 · Git, GitHub e PHP</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-4.html">Próxima semana</a></nav></header>
+    <main>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 3</a><h1>Git, GitHub e introdução ao PHP</h1><p>Organize o histórico do projeto, publique o código em um repositório e prepare o ambiente para executar PHP.</p></header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#git">Git</a><a href="#github">GitHub</a><a href="#php">PHP</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="git"><p class="eyebrow">Controle de versão</p><h2>Por que usar Git</h2><p>Git registra versões do projeto. Cada commit funciona como um ponto identificado no histórico e permite acompanhar o que mudou ao longo do desenvolvimento.</p><div class="concept-grid"><div class="concept"><strong>Repositório</strong><p>Pasta acompanhada pelo Git.</p></div><div class="concept"><strong>Commit</strong><p>Registro de um conjunto coerente de alterações.</p></div><div class="concept"><strong>Branch</strong><p>Linha de desenvolvimento do projeto.</p></div><div class="concept"><strong>Remote</strong><p>Referência para uma cópia hospedada, como o GitHub.</p></div></div><pre><code>git init
+git status
+git add .
+git commit -m "Cria estrutura inicial"</code></pre></section>
+                <section id="github"><p class="eyebrow">Repositório remoto</p><h2>Publicação no GitHub</h2><p>Git e GitHub não são a mesma coisa. Git é a ferramenta de versionamento; GitHub é um serviço que hospeda repositórios e facilita colaboração e apresentação do código.</p><pre><code>git branch -M main
+git remote add origin URL_DO_REPOSITORIO
+git push -u origin main</code></pre><p>Mensagens de commit devem explicar a mudança realizada, por exemplo: <code>Adiciona página de contato</code> ou <code>Corrige validação do formulário</code>.</p></section>
+                <section id="php"><p class="eyebrow">Back-end</p><h2>Primeiro contato com PHP</h2><p>PHP é executado no servidor. O navegador recebe somente o resultado gerado. No ambiente local, o XAMPP fornece o servidor Apache e os recursos necessários.</p><pre><code>&lt;?php
+$curso = 'Desenvolvimento Web Full Stack';
+$cargaHoraria = 40;
+?&gt;
+
+&lt;h1&gt;&lt;?= htmlspecialchars($curso) ?&gt;&lt;/h1&gt;
+&lt;p&gt;Carga horária: &lt;?= $cargaHoraria ?&gt; horas.&lt;/p&gt;</code></pre><div class="note"><strong>Atenção:</strong> arquivos PHP precisam ser acessados por um servidor, como <code>http://localhost/projeto</code>. Abrir o arquivo diretamente não executa o código.</div></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Versione e execute o projeto</h2><ol><li>Inicie um repositório na pasta do projeto.</li><li>Registre a versão atual em um commit.</li><li>Crie um repositório remoto e envie a branch principal.</li><li>Prepare uma pasta no XAMPP e crie um <code>index.php</code>.</li><li>Mostre pelo PHP o nome e a carga horária do curso.</li></ol></section>
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-2.html">Semana 2: JavaScript</a><a href="semana-4.html">Semana 4: PHP e formulários</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 3 de 8</p></footer>
+</body>
+</html>

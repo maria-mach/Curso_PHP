@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 8 · API REST e projeto integrador</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="../index.html">Página inicial</a></nav></header>
+    <main>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 8</a><h1>API REST e projeto integrador</h1><p>Integre sistemas por meio de endpoints e JSON, revise a aplicação completa e prepare a entrega final.</p></header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#api">API REST</a><a href="#http">HTTP</a><a href="#json">JSON</a><a href="#projeto">Projeto final</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="api"><p class="eyebrow">Integração</p><h2>O que é uma API REST</h2><p>Uma API permite que aplicações troquem informações. Em uma API REST, recursos são representados por endereços chamados endpoints e manipulados por métodos HTTP.</p><pre><code>GET    /api/tecnologias
+GET    /api/tecnologias/10
+POST   /api/tecnologias
+PUT    /api/tecnologias/10
+DELETE /api/tecnologias/10</code></pre></section>
+                <section id="http"><p class="eyebrow">Comunicação</p><h2>Métodos e respostas HTTP</h2><div class="concept-grid"><div class="concept"><strong>GET</strong><p>Consulta um recurso sem alterá-lo.</p></div><div class="concept"><strong>POST</strong><p>Cria um novo recurso.</p></div><div class="concept"><strong>PUT</strong><p>Atualiza um recurso existente.</p></div><div class="concept"><strong>DELETE</strong><p>Remove um recurso autorizado.</p></div></div><p>As respostas também possuem códigos de estado: <code>200</code> para sucesso, <code>201</code> para criação, <code>400</code> para requisição inválida, <code>404</code> para recurso ausente e <code>500</code> para falha interna.</p></section>
+                <section id="json"><p class="eyebrow">Formato dos dados</p><h2>Trabalhando com JSON</h2><p>JSON representa objetos e listas em texto estruturado. PHP pode gerar uma resposta JSON para outras aplicações.</p><pre><code>&lt;?php
+header('Content-Type: application/json; charset=utf-8');
+
+$dados = [
+    'curso' =&gt; 'Desenvolvimento Web Full Stack',
+    'carga_horaria' =&gt; 40,
+    'semanas' =&gt; 8
+];
+
+echo json_encode($dados, JSON_UNESCAPED_UNICODE);</code></pre><p>No cliente, a resposta pode ser consultada com <code>fetch()</code> e analisada como JSON.</p><pre><code>fetch('/api/curso.php')
+    .then(resposta =&gt; resposta.json())
+    .then(dados =&gt; console.log(dados))
+    .catch(erro =&gt; console.error(erro));</code></pre></section>
+                <section id="projeto"><p class="eyebrow">Entrega final</p><h2>Integração do projeto</h2><p>A versão final deve demonstrar a conexão entre as partes estudadas:</p><ol><li>Interface estruturada com HTML e estilizada com CSS.</li><li>Lógica organizada em JavaScript e PHP.</li><li>Dados persistidos em MySQL por consultas preparadas.</li><li>CRUD completo e formulários validados.</li><li>Autenticação com hash de senha e controle de acesso.</li><li>Um endpoint criado ou consumido pela aplicação.</li></ol><div class="note"><strong>Antes da entrega:</strong> teste os principais caminhos, trate erros, remova credenciais do repositório e confira a aplicação em telas diferentes.</div></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Finalize e apresente a aplicação</h2><p>Revise o projeto como uma pessoa usuária: cadastre um registro, consulte, edite, exclua, entre e saia da conta e teste a integração da API. Documente no README o objetivo, as tecnologias, a instalação e as decisões principais.</p></section>
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-7.html">Semana 7: Autenticação</a><a href="../index.html">Voltar ao início</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 8 de 8</p></footer>
+</body>
+</html>

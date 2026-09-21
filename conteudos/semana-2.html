@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 2 · Fundamentos do JavaScript</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-3.html">Próxima semana</a></nav></header>
+    <main>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 2</a><h1>Fundamentos do JavaScript</h1><p>Aprenda a representar informações, fazer comparações, repetir operações e organizar a lógica em funções.</p></header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#conceitos">Conceitos</a><a href="#decisoes">Decisões</a><a href="#repeticoes">Repetições</a><a href="#funcoes">Funções</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="conceitos"><p class="eyebrow">Dados e operações</p><h2>Variáveis, tipos e operadores</h2><p>Variáveis armazenam valores que serão utilizados pelo programa. Em JavaScript moderno, <code>const</code> é usada quando a referência não será reatribuída e <code>let</code> quando o valor poderá mudar.</p><div class="concept-grid"><div class="concept"><strong>String</strong><p>Texto, como nome, categoria ou mensagem.</p></div><div class="concept"><strong>Number</strong><p>Números inteiros ou decimais usados em cálculos.</p></div><div class="concept"><strong>Boolean</strong><p>Representa apenas verdadeiro ou falso.</p></div><div class="concept"><strong>Array</strong><p>Agrupa diversos valores em uma lista ordenada.</p></div></div><pre><code>const curso = "Full Stack";
+let semanasConcluidas = 2;
+const totalSemanas = 8;
+const progresso = (semanasConcluidas / totalSemanas) * 100;
+
+console.log(`Progresso: ${progresso}%`);</code></pre></section>
+                <section id="decisoes"><p class="eyebrow">Fluxo do programa</p><h2>Condições</h2><p>Uma estrutura condicional escolhe qual trecho executar de acordo com uma comparação.</p><pre><code>const nota = 8;
+
+if (nota &gt;= 7) {
+    console.log("Atividade concluída");
+} else {
+    console.log("Revise o conteúdo e tente novamente");
+}</code></pre><p>Operadores como <code>===</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code> e <code>&lt;=</code> produzem resultados verdadeiros ou falsos.</p></section>
+                <section id="repeticoes"><p class="eyebrow">Automação</p><h2>Estruturas de repetição</h2><p>Laços evitam escrever a mesma instrução diversas vezes. O <code>for</code> é útil quando existe uma quantidade conhecida de repetições.</p><pre><code>const tecnologias = ["HTML", "CSS", "JavaScript"];
+
+for (const tecnologia of tecnologias) {
+    console.log(tecnologia);
+}</code></pre></section>
+                <section id="funcoes"><p class="eyebrow">Organização</p><h2>Funções reutilizáveis</h2><p>Funções agrupam instruções relacionadas. Elas podem receber parâmetros e devolver um resultado.</p><pre><code>function calcularProgresso(concluidas, total) {
+    return Math.round((concluidas / total) * 100);
+}
+
+const resultado = calcularProgresso(3, 8);
+console.log(`${resultado}%`);</code></pre><div class="note"><strong>Importante:</strong> pratique cada estrutura separadamente e acompanhe os resultados pelo console do navegador.</div></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Calculadora de progresso</h2><p>Crie um arquivo <code>script.js</code> que receba a quantidade de semanas concluídas, calcule o percentual e mostre uma mensagem diferente para início, andamento e conclusão do curso. Execute e confira os resultados pelo console.</p></section>
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-1.html">Semana 1: HTML e CSS</a><a href="semana-3.html">Semana 3: Git e PHP</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 2 de 8</p></footer>
+</body>
+</html>

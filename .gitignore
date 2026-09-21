@@ -1,13 +1,6 @@
-# Configuracao local e credenciais do banco
-config.php
-
 # Arquivos temporarios do sistema e do editor
 *.log
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
-
-# Conteudo enviado localmente
-uploads/*
-!uploads/.gitkeep

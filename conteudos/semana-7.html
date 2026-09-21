@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 7 · CRUD e autenticação</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-8.html">Próxima semana</a></nav></header>
+    <main>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 7</a><h1>CRUD e autenticação</h1><p>Proteja o acesso à aplicação utilizando cadastro de usuários, senhas seguras, sessões e autorização.</p></header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#conceitos">Conceitos</a><a href="#senhas">Senhas</a><a href="#login">Login</a><a href="#acesso">Acesso</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="conceitos"><p class="eyebrow">Identidade e permissão</p><h2>Autenticação e autorização</h2><div class="concept-grid"><div class="concept"><strong>Autenticação</strong><p>Confirma quem está tentando entrar no sistema.</p></div><div class="concept"><strong>Autorização</strong><p>Define o que uma pessoa autenticada pode acessar ou alterar.</p></div><div class="concept"><strong>Sessão</strong><p>Mantém a identificação durante a navegação.</p></div><div class="concept"><strong>Perfil</strong><p>Agrupa permissões, como aluno e professor.</p></div></div></section>
+                <section id="senhas"><p class="eyebrow">Armazenamento seguro</p><h2>Nunca salve senhas em texto puro</h2><p>O banco deve armazenar somente o hash produzido por <code>password_hash()</code>. O valor original não deve ser recuperável.</p><pre><code>&lt;?php
+$hash = password_hash($senha, PASSWORD_DEFAULT);
+
+$stmt = $pdo-&gt;prepare(
+    'INSERT INTO usuarios (nome, usuario, senha_hash) VALUES (?, ?, ?)'
+);
+$stmt-&gt;execute([$nome, $usuario, $hash]);</code></pre></section>
+                <section id="login"><p class="eyebrow">Verificação</p><h2>Processo de login</h2><p>O sistema localiza o usuário e compara a senha informada com o hash armazenado.</p><pre><code>&lt;?php
+$stmt = $pdo-&gt;prepare(
+    'SELECT id, nome, senha_hash, perfil FROM usuarios WHERE usuario = ?'
+);
+$stmt-&gt;execute([$usuario]);
+$registro = $stmt-&gt;fetch();
+
+if ($registro &amp;&amp; password_verify($senha, $registro['senha_hash'])) {
+    session_regenerate_id(true);
+    $_SESSION['usuario'] = [
+        'id' =&gt; $registro['id'],
+        'nome' =&gt; $registro['nome'],
+        'perfil' =&gt; $registro['perfil']
+    ];
+}</code></pre></section>
+                <section id="acesso"><p class="eyebrow">Páginas protegidas</p><h2>Controle de acesso</h2><pre><code>&lt;?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit;
+}
+
+if ($_SESSION['usuario']['perfil'] !== 'professor') {
+    http_response_code(403);
+    exit('Acesso não autorizado.');
+}</code></pre><div class="note"><strong>Privacidade:</strong> colete somente os dados necessários, encerre sessões corretamente e utilize HTTPS em produção.</div></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Proteja o CRUD</h2><p>Crie cadastro e login utilizando somente nome, usuário e senha. Proteja as páginas de alteração e exclusão, implemente saída da conta e teste tentativas de acesso sem sessão.</p></section>
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-6.html">Semana 6: PHP e CRUD</a><a href="semana-8.html">Semana 8: API REST</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 7 de 8</p></footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 6 · PHP, MySQL e CRUD</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-7.html">Próxima semana</a></nav></header>
+    <main>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 6</a><h1>PHP, MySQL e CRUD</h1><p>Conecte o back-end ao banco de dados e implemente as quatro operações fundamentais de uma aplicação.</p></header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#crud">CRUD</a><a href="#conexao">Conexão</a><a href="#consultas">Consultas</a><a href="#seguranca">Segurança</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="crud"><p class="eyebrow">Operações</p><h2>O que significa CRUD</h2><div class="concept-grid"><div class="concept"><strong>Create</strong><p>Criar um novo registro com <code>INSERT</code>.</p></div><div class="concept"><strong>Read</strong><p>Consultar registros com <code>SELECT</code>.</p></div><div class="concept"><strong>Update</strong><p>Atualizar um registro com <code>UPDATE</code>.</p></div><div class="concept"><strong>Delete</strong><p>Excluir um registro com <code>DELETE</code>.</p></div></div></section>
+                <section id="conexao"><p class="eyebrow">PDO</p><h2>Conexão entre PHP e MySQL</h2><p>PDO oferece uma interface consistente para conexão e consultas. Erros devem gerar exceções durante o desenvolvimento.</p><pre><code>&lt;?php
+$pdo = new PDO(
+    'mysql:host=localhost;dbname=meu_projeto;charset=utf8mb4',
+    'root',
+    '',
+    [PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION]
+);</code></pre><p>Em produção, credenciais devem ficar em um arquivo de configuração que não seja publicado no repositório.</p></section>
+                <section id="consultas"><p class="eyebrow">Aplicação</p><h2>Cadastro e consulta</h2><pre><code>&lt;?php
+$stmt = $pdo-&gt;prepare(
+    'INSERT INTO tecnologias (nome, categoria) VALUES (?, ?)'
+);
+$stmt-&gt;execute([$nome, $categoria]);
+
+$lista = $pdo-&gt;query(
+    'SELECT id, nome, categoria FROM tecnologias ORDER BY nome'
+)-&gt;fetchAll(PDO::FETCH_ASSOC);</code></pre><h3>Atualização e exclusão</h3><pre><code>&lt;?php
+$stmt = $pdo-&gt;prepare(
+    'UPDATE tecnologias SET nome = ?, categoria = ? WHERE id = ?'
+);
+$stmt-&gt;execute([$nome, $categoria, $id]);
+
+$stmt = $pdo-&gt;prepare('DELETE FROM tecnologias WHERE id = ?');
+$stmt-&gt;execute([$id]);</code></pre></section>
+                <section id="seguranca"><p class="eyebrow">Proteção</p><h2>Consultas preparadas</h2><p>Valores recebidos nunca devem ser concatenados diretamente ao SQL. Consultas preparadas separam o comando dos dados e ajudam a prevenir injeção de SQL.</p><div class="note"><strong>Antes de alterar ou excluir:</strong> valide o identificador, confirme se o registro existe e verifique se o usuário possui autorização.</div></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Implemente o CRUD do projeto</h2><p>Crie páginas para cadastrar, listar, editar e excluir os registros da tabela definida na semana anterior. Use PDO, consultas preparadas e mensagens claras de sucesso ou erro.</p></section>
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-5.html">Semana 5: Dados e MySQL</a><a href="semana-7.html">Semana 7: Autenticação</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 6 de 8</p></footer>
+</body>
+</html>

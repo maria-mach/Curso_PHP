@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 5 · GET, POST, sessões e MySQL</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body>
+    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-6.html">Próxima semana</a></nav></header>
+    <main>
+        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 5</a><h1>GET, POST, validação, sessões e MySQL</h1><p>Compreenda como dados chegam ao servidor, permanecem entre páginas e são organizados em um banco relacional.</p></header>
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#requisicoes">GET e POST</a><a href="#validacao">Validação</a><a href="#sessoes">Sessões</a><a href="#mysql">MySQL</a><a href="#pratica">Prática</a></aside>
+            <article class="study-article">
+                <section id="requisicoes"><p class="eyebrow">Requisições</p><h2>Diferença entre GET e POST</h2><div class="concept-grid"><div class="concept"><strong>GET</strong><p>Envia parâmetros pela URL. É adequado para buscas, filtros e páginas que podem ser compartilhadas.</p></div><div class="concept"><strong>POST</strong><p>Envia dados no corpo da requisição. É utilizado em cadastros e alterações.</p></div></div><pre><code>&lt;?php
+$busca = trim($_GET['busca'] ?? '');
+$nome = trim($_POST['nome'] ?? '');</code></pre><p>O método não substitui segurança. Tanto dados de GET quanto de POST devem ser validados no servidor.</p></section>
+                <section id="validacao"><p class="eyebrow">Qualidade dos dados</p><h2>Validar antes de utilizar</h2><p>Validar significa conferir se um valor está presente, possui formato permitido e atende às regras da aplicação.</p><pre><code>&lt;?php
+$usuario = strtolower(trim($_POST['usuario'] ?? ''));
+
+if (!preg_match('/^[a-z0-9._-]{3,30}$/', $usuario)) {
+    exit('Usuário inválido.');
+}</code></pre><div class="note"><strong>Regra importante:</strong> validações do navegador ajudam a pessoa usuária, mas somente a validação no servidor protege a aplicação.</div></section>
+                <section id="sessoes"><p class="eyebrow">Estado da aplicação</p><h2>Sessões</h2><p>HTTP não mantém memória entre páginas. Sessões permitem associar dados temporários a uma navegação, como a identificação de um usuário autenticado.</p><pre><code>&lt;?php
+session_start();
+
+$_SESSION['usuario'] = [
+    'id' =&gt; 10,
+    'nome' =&gt; 'Ana'
+];
+
+echo $_SESSION['usuario']['nome'];</code></pre><p>Para encerrar, remova os dados da sessão e destrua a sessão quando necessário.</p></section>
+                <section id="mysql"><p class="eyebrow">Persistência</p><h2>Banco de dados relacional</h2><p>MySQL organiza dados em tabelas. Cada tabela possui colunas, registros e uma chave primária que identifica cada linha.</p><pre><code>CREATE TABLE tecnologias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(80) NOT NULL,
+    categoria VARCHAR(40) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO tecnologias (nome, categoria)
+VALUES ('PHP', 'Back-end');
+
+SELECT * FROM tecnologias ORDER BY nome;</code></pre><p>As operações principais são <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code> e <code>DELETE</code>.</p></section>
+                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Modele os dados do projeto</h2><ol><li>Identifique quais informações precisam permanecer salvas.</li><li>Crie uma tabela com chave primária e campos obrigatórios.</li><li>Insira alguns registros pelo phpMyAdmin.</li><li>Execute consultas de seleção, atualização e exclusão.</li><li>Registre o script de criação em um arquivo SQL.</li></ol></section>
+                <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-4.html">Semana 4: PHP e formulários</a><a href="semana-6.html">Semana 6: PHP e CRUD</a></nav>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 5 de 8</p></footer>
+</body>
+</html>
