@@ -18,7 +18,7 @@
             <p>Entenda as três tecnologias fundamentais do front-end e construa a primeira página do projeto integrador.</p>
         </header>
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#visao">Visão geral</a><a href="#html">HTML</a><a href="#css">CSS</a><a href="#javascript">JavaScript</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#visao">Visão geral</a><a href="#html">HTML</a><a href="#css">CSS</a><a href="#box-model">Modelo de caixa</a><a href="#javascript">JavaScript</a><a href="#pratica">Prática</a></aside>
             <article class="study-article">
                 <section id="visao">
                     <p class="eyebrow">Visão geral</p>
@@ -52,29 +52,69 @@
     &lt;/main&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-                    <p>Prefira elementos semânticos como <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code> e <code>footer</code>. Eles tornam a estrutura mais compreensível para navegadores, mecanismos de busca e tecnologias assistivas.</p>
+                    <h3>Configurações e conteúdo visível</h3>
+                    <p>O documento é dividido em duas áreas importantes. O <code>head</code> reúne informações usadas pelo navegador, como codificação de caracteres, título da aba, adaptação para celulares e ligação com o CSS. Esses dados configuram a página, mas não formam o conteúdo principal exibido.</p>
+                    <p>O <code>body</code> contém aquilo que aparece na tela: textos, imagens, links, menus, formulários e as demais partes da interface.</p>
+
+                    <h3>Semântica e organização</h3>
+                    <p>Elementos como <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code> e <code>footer</code> indicam a função de cada região. O <code>main</code> envolve o assunto central da página, enquanto cabeçalho e rodapé organizam informações complementares.</p>
+                    <p>Quando não existe um elemento semântico adequado, a <code>div</code> pode agrupar outros elementos. O atributo <code>class</code> identifica um grupo reutilizável, como vários cartões. Já o atributo <code>id</code> nomeia uma parte específica e única do documento.</p>
+                    <pre><code>&lt;header id="topo"&gt;
+    &lt;h1&gt;Meu portfólio&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article class="cartao"&gt;Projeto 1&lt;/article&gt;
+    &lt;article class="cartao"&gt;Projeto 2&lt;/article&gt;
+&lt;/main&gt;</code></pre>
                 </section>
 
                 <section id="css">
                     <p class="eyebrow">Apresentação</p>
                     <h2>Estilização com CSS</h2>
-                    <p>Uma regra CSS possui um seletor e um conjunto de propriedades. O seletor indica o elemento que será estilizado; as propriedades descrevem como ele deve aparecer.</p>
-                    <pre><code>body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fbf8fa;
+                    <p>Uma regra CSS combina seletor, propriedade e valor. O seletor aponta quais elementos receberão o estilo. Dentro das chaves, cada propriedade representa um aspecto visual e o valor define a configuração aplicada.</p>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>Elemento</strong><p><code>p</code> alcança todos os parágrafos da página.</p></div>
+                        <div class="concept"><strong>Classe</strong><p><code>.cartao</code> alcança os elementos com <code>class="cartao"</code>.</p></div>
+                        <div class="concept"><strong>ID</strong><p><code>#topo</code> alcança o elemento identificado por <code>id="topo"</code>.</p></div>
+                        <div class="concept"><strong>Declaração</strong><p><code>color: #642640</code> reúne uma propriedade e seu valor.</p></div>
+                    </div>
+                    <pre><code>p {
     color: #302833;
+    font-family: Arial, sans-serif;
 }
 
-main {
-    width: min(900px, 90%);
-    margin: 0 auto;
+.cartao {
+    background-color: #ffffff;
+    padding: 20px;
 }
 
-h1 {
-    color: #642640;
+#topo {
+    margin-bottom: 24px;
 }</code></pre>
+                    <p><code>color</code> altera a cor do texto, <code>background-color</code> define a cor de fundo e <code>font-family</code> escolhe a família tipográfica.</p>
                     <div class="note"><strong>Boa prática:</strong> mantenha o conteúdo no HTML e a apresentação no arquivo CSS. Isso facilita alterações e evita repetição.</div>
+                </section>
+
+                <section id="box-model">
+                    <p class="eyebrow">Espaçamentos</p>
+                    <h2>O modelo de caixa do CSS</h2>
+                    <p>O navegador representa cada elemento como uma caixa formada por camadas. Entender essa estrutura ajuda a controlar tamanhos e distâncias sem depender de tentativas aleatórias.</p>
+                    <figure class="study-figure">
+                        <img src="../assets/css-box-model.png" alt="Diagrama do modelo de caixa do CSS com margin na camada externa, seguida por border, padding e content no centro.">
+                        <figcaption>As camadas aparecem da parte externa para a interna: margin, border, padding e content.</figcaption>
+                    </figure>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>Content</strong><p>Área ocupada pelo texto, imagem ou outro conteúdo do elemento.</p></div>
+                        <div class="concept"><strong>Padding</strong><p>Espaço interno entre o conteúdo e a borda.</p></div>
+                        <div class="concept"><strong>Border</strong><p>Linha que envolve o conteúdo e o espaço interno.</p></div>
+                        <div class="concept"><strong>Margin</strong><p>Espaço externo que separa a caixa dos elementos vizinhos.</p></div>
+                    </div>
+                    <pre><code>.cartao {
+    padding: 20px;
+    border: 1px solid #d8c9d0;
+    margin: 16px 0;
+}</code></pre>
                 </section>
 
                 <section id="javascript">
@@ -86,7 +126,7 @@ const cargaHoraria = 40;
 
 console.log(nomeDoCurso);
 console.log(`Carga horária: ${cargaHoraria} horas`);</code></pre>
-                    <p>O resultado pode ser observado no console das ferramentas de desenvolvimento do navegador.</p>
+                    <p>O resultado de <code>console.log()</code> pode ser observado no console das ferramentas de desenvolvimento do navegador. Para apresentar um aviso simples diretamente na tela, JavaScript também oferece <code>alert("Mensagem")</code>.</p>
                 </section>
 
                 <section class="practice" id="pratica">

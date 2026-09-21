@@ -94,7 +94,8 @@ p { margin-top: 0; }
 .study-nav strong { display: block; margin-bottom: 12px; color: var(--wine); }
 .study-nav a { display: block; padding: 7px 0; color: var(--muted); font-size: 14px; text-decoration: none; }
 .study-nav a:hover { color: var(--berry); }
-.study-article section { margin-bottom: 44px; scroll-margin-top: 100px; }
+.study-article { min-width: 0; }
+.study-article section { min-width: 0; margin-bottom: 44px; scroll-margin-top: 100px; }
 .study-article h2 { margin-bottom: 16px; font-size: 29px; }
 .study-article h3 { margin: 24px 0 10px; font-family: "Segoe UI", Arial, sans-serif; font-size: 18px; }
 .study-article p, .study-article li { color: #514751; }
@@ -105,6 +106,9 @@ p { margin-top: 0; }
 .concept p { margin-bottom: 0; font-size: 14px; }
 .note { padding: 18px 20px; background: var(--sage-soft); border-left: 4px solid var(--sage); border-radius: 6px; }
 .note strong { color: #315646; }
+.study-figure { margin: 24px 0; }
+.study-figure img { width: 100%; max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
+.study-figure figcaption { margin-top: 9px; color: var(--muted); font-size: 13px; text-align: center; }
 pre { margin: 18px 0; padding: 18px; overflow: auto; background: var(--code); border-left: 4px solid var(--coral); border-radius: 6px; color: #f8edf2; line-height: 1.55; }
 code { font-family: Consolas, "Courier New", monospace; }
 :not(pre) > code { padding: 2px 5px; background: var(--rose); border-radius: 4px; color: var(--wine); }
