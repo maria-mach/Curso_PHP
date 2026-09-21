@@ -18,7 +18,7 @@
             <p>Entenda as três tecnologias fundamentais do front-end e construa a primeira página do projeto integrador.</p>
         </header>
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#visao">Visão geral</a><a href="#html">HTML</a><a href="#css">CSS</a><a href="#box-model">Modelo de caixa</a><a href="#javascript">JavaScript</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#visao">Visão geral</a><a href="#html">HTML</a><a href="#css">CSS</a><a href="#box-model">Modelo de caixa</a><a href="#javascript">JavaScript</a><a href="#exemplo">Exemplo integrado</a><a href="#revisao">Revisão</a><a href="#pratica">Prática</a></aside>
             <article class="study-article">
                 <section id="visao">
                     <p class="eyebrow">Visão geral</p>
@@ -129,10 +129,81 @@ console.log(`Carga horária: ${cargaHoraria} horas`);</code></pre>
                     <p>O resultado de <code>console.log()</code> pode ser observado no console das ferramentas de desenvolvimento do navegador. Para apresentar um aviso simples diretamente na tela, JavaScript também oferece <code>alert("Mensagem")</code>.</p>
                 </section>
 
+                <section id="exemplo">
+                    <p class="eyebrow">Exemplo integrado</p>
+                    <h2>Da estrutura ao resultado no navegador</h2>
+                    <p>Em um projeto organizado, cada tecnologia fica responsável por uma parte. O arquivo <code>index.html</code> guarda o conteúdo e liga os outros arquivos; <code>style.css</code> cuida da aparência; e <code>script.js</code> contém as instruções de programação.</p>
+                    <h3>1. Estrutura em <code>index.html</code></h3>
+                    <pre><code>&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Portfólio de Ana&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header id="topo"&gt;
+        &lt;h1&gt;Portfólio de Ana&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;article class="cartao"&gt;
+            &lt;h2&gt;Meu primeiro projeto&lt;/h2&gt;
+            &lt;p&gt;Uma página criada com HTML e CSS.&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <p>As tags formam uma hierarquia: <code>html</code> envolve o documento, <code>head</code> reúne configurações e <code>body</code> reúne o conteúdo visível. Dentro do corpo, o cabeçalho identifica a página e o <code>main</code> contém seu assunto principal.</p>
+                    <p>Em <code>class="cartao"</code>, <code>class</code> é o nome do atributo e <code>cartao</code> é seu valor. A classe pode ser repetida em vários projetos. O <code>id="topo"</code> identifica somente aquele cabeçalho.</p>
+
+                    <h3>2. Aparência em <code>style.css</code></h3>
+                    <pre><code>body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f3f5;
+}
+
+#topo {
+    color: #642640;
+}
+
+.cartao {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #d8c9d0;
+    margin: 24px 0;
+}</code></pre>
+                    <p>O navegador procura os elementos indicados pelos seletores e aplica as declarações. O seletor <code>body</code> usa o nome da tag, <code>#topo</code> usa o sinal de cerquilha para localizar um ID e <code>.cartao</code> usa o ponto para localizar uma classe.</p>
+                    <p>No cartão, o <code>padding</code> afasta o texto da borda por dentro. A <code>border</code> desenha o contorno e a <code>margin</code> cria distância entre o cartão e os elementos ao redor.</p>
+
+                    <h3>3. Instrução em <code>script.js</code></h3>
+                    <pre><code>const projeto = "Meu primeiro projeto";
+console.log(`Página carregada: ${projeto}`);</code></pre>
+                    <p>A constante guarda um texto e <code>console.log()</code> envia uma mensagem ao console do navegador. Ela é útil para acompanhar valores e entender o que o programa executou, sem inserir a mensagem no conteúdo da página.</p>
+
+                    <div class="note"><strong>Sequência de leitura:</strong> o navegador abre o HTML, encontra a ligação com o CSS no <code>head</code>, mostra o conteúdo do <code>body</code> com os estilos aplicados e executa o arquivo JavaScript indicado no final.</div>
+                </section>
+
+                <section id="revisao">
+                    <p class="eyebrow">Síntese</p>
+                    <h2>Revise o que você aprendeu</h2>
+                    <p>Antes de seguir para a atividade, confira se você consegue explicar os pontos abaixo com suas próprias palavras. Volte ao exemplo integrado quando precisar comparar um conceito com sua aplicação no código.</p>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>Responsabilidades</strong><p>Diferencie estrutura, apresentação e comportamento em uma página web.</p></div>
+                        <div class="concept"><strong>Documento HTML</strong><p>Reconheça as funções de <code>head</code>, <code>body</code> e <code>main</code>.</p></div>
+                        <div class="concept"><strong>Identificação</strong><p>Decida quando uma marcação deve usar uma classe reutilizável ou um ID único.</p></div>
+                        <div class="concept"><strong>Regra CSS</strong><p>Localize seletor, propriedade e valor em uma declaração de estilo.</p></div>
+                        <div class="concept"><strong>Modelo de caixa</strong><p>Distinga o espaço interno do elemento do espaço que o separa dos vizinhos.</p></div>
+                        <div class="concept"><strong>Console</strong><p>Entenda onde aparece uma mensagem enviada por <code>console.log()</code>.</p></div>
+                    </div>
+                </section>
+
                 <section class="practice" id="pratica">
                     <p class="eyebrow">Prática sugerida</p>
                     <h2>Crie a página inicial do projeto</h2>
-                    <ol><li>Crie uma pasta com os arquivos <code>index.html</code> e <code>style.css</code>.</li><li>Adicione cabeçalho, navegação, conteúdo principal e rodapé.</li><li>Apresente o nome, o objetivo e as principais funções do projeto.</li><li>Defina cores, tipografia, largura máxima e espaçamentos.</li><li>Abra a página em tamanhos diferentes e verifique a leitura.</li></ol>
+                    <ol><li>Crie uma pasta com os arquivos <code>index.html</code>, <code>style.css</code> e <code>script.js</code>.</li><li>Adicione cabeçalho, navegação, conteúdo principal e rodapé usando elementos adequados.</li><li>Apresente o nome, o objetivo e as principais funções do projeto.</li><li>Use uma classe em elementos que compartilham o mesmo visual e um ID em uma região única.</li><li>Defina cores, tipografia, largura máxima, <code>padding</code>, borda e <code>margin</code>.</li><li>Crie uma variável no JavaScript e mostre seu valor no console.</li><li>Abra a página em tamanhos diferentes e verifique a leitura.</li></ol>
+                    <h3>Critérios para conferir sua página</h3>
+                    <p>A atividade estará bem encaminhada quando o conteúdo aparecer organizado, o CSS estiver em um arquivo separado, os espaçamentos internos e externos forem perceptíveis e o console exibir a mensagem do JavaScript sem erros.</p>
                 </section>
 
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><span class="disabled">Semana anterior</span><a href="semana-2.html">Semana 2: JavaScript</a></nav>
