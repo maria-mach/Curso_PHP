@@ -114,6 +114,26 @@ code { font-family: Consolas, "Courier New", monospace; }
 :not(pre) > code { padding: 2px 5px; background: var(--rose); border-radius: 4px; color: var(--wine); }
 .practice { padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
 .practice h2 { margin-bottom: 10px; }
+.interactive-lab { padding: 28px; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
+.demo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 24px; }
+.demo-panel + .demo-panel { padding-left: 28px; border-left: 1px solid var(--line); }
+.demo-panel label { display: block; margin-bottom: 8px; color: var(--wine); font-weight: 700; }
+.demo-panel input[type="range"] { width: 100%; accent-color: var(--berry); }
+.demo-panel input[type="text"] { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #cdbfc6; border-radius: 6px; background: #fff; color: var(--ink); font: inherit; }
+.demo-panel input[type="text"]:focus { outline: 3px solid rgba(166, 61, 104, .18); border-color: var(--berry); }
+.demo-progress { height: 10px; margin: 14px 0 10px; overflow: hidden; background: var(--rose); border-radius: 5px; }
+.demo-progress span { display: block; width: 0; height: 100%; background: var(--berry); transition: width .2s ease; }
+.demo-result { min-height: 27px; color: var(--wine) !important; font-weight: 700; }
+.demo-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.demo-tags span { padding: 4px 9px; background: var(--sage-soft); border-radius: 4px; color: #315646; font-size: 13px; font-weight: 700; }
+.demo-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+.demo-actions button { min-height: 42px; padding: 9px 13px; border: 1px solid var(--berry); border-radius: 6px; background: #fff; color: var(--berry); font: inherit; font-weight: 800; cursor: pointer; }
+.demo-actions button[type="submit"] { background: var(--berry); color: #fff; }
+.demo-actions button:hover { border-color: var(--wine); color: var(--wine); }
+.demo-actions button[type="submit"]:hover { background: var(--wine); color: #fff; }
+.demo-preview { min-height: 58px; margin: 0; padding: 14px; background: var(--rose); border-left: 4px solid var(--berry); border-radius: 4px; transition: background-color .2s ease, color .2s ease; }
+.demo-preview.is-highlighted { background: var(--wine); color: #fff; }
+.demo-status { min-height: 27px; margin: 10px 0 0; color: var(--sage) !important; font-weight: 700; }
 .week-pagination { padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); }
 .week-pagination a { color: var(--berry); font-weight: 800; }
 .week-pagination .disabled { color: #aaa0a6; }
@@ -145,7 +165,9 @@ code { font-family: Consolas, "Courier New", monospace; }
     .hero-copy { font-size: 17px; }
     .course-facts { gap: 20px; }
     .section { width: min(100% - 32px, 1180px); padding: 64px 0; }
-    .week-grid, .concept-grid { grid-template-columns: 1fr; }
+    .week-grid, .concept-grid, .demo-grid { grid-template-columns: 1fr; }
+    .interactive-lab { padding: 22px 18px; }
+    .demo-panel + .demo-panel { padding: 24px 0 0; border-top: 1px solid var(--line); border-left: 0; }
     .week-card { min-height: 0; grid-template-columns: 46px 1fr; padding: 18px; }
     .week-number { width: 42px; height: 42px; }
     .principles div { grid-template-columns: 1fr; gap: 4px; }

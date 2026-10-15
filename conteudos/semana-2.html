@@ -1,69 +1,222 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 2 · JavaScript e DOM</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Semana 2 · JavaScript e DOM</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/week-2-demo.js" defer></script>
+</head>
 <body>
-    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-3.html">Próxima semana</a></nav></header>
-    <main>
-        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 2</a><h1>JavaScript e DOM</h1><p>Aprenda os fundamentos da linguagem e use o DOM para selecionar elementos, alterar a página e responder às ações da pessoa usuária.</p></header>
-        <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#conceitos">Conceitos</a><a href="#decisoes">Decisões</a><a href="#repeticoes">Repetições</a><a href="#funcoes">Funções</a><a href="#dom">DOM</a><a href="#eventos">Eventos</a><a href="#revisao">Revisão</a><a href="#pratica">Prática</a></aside>
-            <article class="study-article">
-                <section id="conceitos"><p class="eyebrow">Dados e operações</p><h2>Variáveis, tipos e operadores</h2><p>Variáveis armazenam valores que serão utilizados pelo programa. Em JavaScript moderno, <code>const</code> é usada quando a referência não será reatribuída e <code>let</code> quando o valor poderá mudar.</p><div class="concept-grid"><div class="concept"><strong>String</strong><p>Texto, como nome, categoria ou mensagem.</p></div><div class="concept"><strong>Number</strong><p>Números inteiros ou decimais usados em cálculos.</p></div><div class="concept"><strong>Boolean</strong><p>Representa apenas verdadeiro ou falso.</p></div><div class="concept"><strong>Array</strong><p>Agrupa diversos valores em uma lista ordenada.</p></div></div><pre><code>const curso = "Full Stack";
-let semanasConcluidas = 2;
-const totalSemanas = 8;
-const progresso = (semanasConcluidas / totalSemanas) * 100;
+    <header class="site-header">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a>
+        <nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-3.html">Próxima semana</a></nav>
+    </header>
 
-console.log(`Progresso: ${progresso}%`);</code></pre></section>
-                <section id="decisoes"><p class="eyebrow">Fluxo do programa</p><h2>Condições</h2><p>Uma estrutura condicional escolhe qual trecho executar de acordo com uma comparação.</p><pre><code>const nota = 8;
+    <main>
+        <header class="content-hero">
+            <a class="breadcrumb" href="../index.html#programa">Curso / Semana 2</a>
+            <h1>JavaScript e DOM</h1>
+            <p>Aprenda a representar dados, controlar o fluxo do programa e transformar uma página estática em uma interface interativa.</p>
+        </header>
+
+        <div class="study-layout">
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#fundamentos">Fundamentos</a><a href="#decisoes">Decisões e repetição</a><a href="#funcoes">Funções</a><a href="#dom">DOM</a><a href="#eventos">Eventos</a><a href="#laboratorio">Laboratório</a><a href="#revisao">Revisão</a><a href="#pratica">Prática</a></aside>
+
+            <article class="study-article">
+                <section id="fundamentos">
+                    <p class="eyebrow">Dados e operações</p>
+                    <h2>Variáveis, tipos e cálculos</h2>
+                    <p>Uma variável associa um nome a um valor. Em JavaScript moderno, <code>const</code> é a escolha comum quando a variável não receberá outro valor. <code>let</code> é usada quando haverá reatribuição durante a execução.</p>
+                    <pre><code>const totalSemanas = 8;
+let semanasConcluidas = 2;
+
+semanasConcluidas = 3; // permitido com let
+// totalSemanas = 10;  // causaria erro</code></pre>
+                    <p><code>const</code> não torna todos os valores imutáveis. Ela impede que a variável seja apontada para outro valor. Para os exemplos iniciais, a diferença principal é simples: use <code>const</code> quando não houver reatribuição e <code>let</code> quando o valor precisar mudar.</p>
+
+                    <h3>Tipos e estruturas</h3>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>String</strong><p>Representa texto. Exemplo: <code>"Maria"</code>.</p></div>
+                        <div class="concept"><strong>Number</strong><p>Representa números inteiros ou decimais. Exemplo: <code>8</code>.</p></div>
+                        <div class="concept"><strong>Boolean</strong><p>Representa apenas <code>true</code> ou <code>false</code>.</p></div>
+                        <div class="concept"><strong>Array</strong><p>Organiza uma lista ordenada, como <code>["HTML", "CSS"]</code>.</p></div>
+                    </div>
+
+                    <h3>Dois valores podem formar um percentual</h3>
+                    <p>Para calcular o progresso, divida a quantidade concluída pelo total e multiplique por 100. Se 2 de 8 semanas foram concluídas, <code>2 / 8</code> resulta em <code>0.25</code>. Multiplicar por 100 transforma esse valor em <code>25</code>.</p>
+                    <pre><code>const concluidas = 2;
+const total = 8;
+const progresso = (concluidas / total) * 100;
+
+console.log(`Progresso: ${progresso}%`); // 25%</code></pre>
+                </section>
+
+                <section id="decisoes">
+                    <p class="eyebrow">Fluxo do programa</p>
+                    <h2>Condições e repetições</h2>
+                    <p>Uma condição permite escolher qual bloco será executado. A expressão dentro de <code>if</code> é avaliada como verdadeira ou falsa. Quando ela é verdadeira, o primeiro bloco executa. Caso contrário, o programa segue para <code>else</code>.</p>
+                    <pre><code>const nota = 8;
 
 if (nota &gt;= 7) {
     console.log("Atividade concluída");
 } else {
-    console.log("Revise o conteúdo e tente novamente");
-}</code></pre><p>Operadores como <code>===</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code> e <code>&lt;=</code> produzem resultados verdadeiros ou falsos.</p></section>
-                <section id="repeticoes"><p class="eyebrow">Automação</p><h2>Estruturas de repetição</h2><p>Laços evitam escrever a mesma instrução diversas vezes. O <code>for</code> é útil quando existe uma quantidade conhecida de repetições.</p><pre><code>const tecnologias = ["HTML", "CSS", "JavaScript"];
+    console.log("Revise o conteúdo");
+}</code></pre>
+                    <p>Nesse caso, <code>8 &gt;= 7</code> é verdadeiro. Portanto, o bloco de <code>if</code> executa e o bloco de <code>else</code> é ignorado. Operadores como <code>===</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code> e <code>&lt;=</code> produzem resultados booleanos.</p>
+
+                    <h3>Percorrendo uma lista com <code>for...of</code></h3>
+                    <p>Quando os dados estão em um array, <code>for...of</code> percorre cada valor, um por vez. A variável declarada no laço recebe o item atual a cada repetição.</p>
+                    <pre><code>const tecnologias = ["HTML", "CSS", "JavaScript"];
 
 for (const tecnologia of tecnologias) {
     console.log(tecnologia);
-}</code></pre></section>
-                <section id="funcoes"><p class="eyebrow">Organização</p><h2>Funções reutilizáveis</h2><p>Funções agrupam instruções relacionadas. Elas podem receber parâmetros e devolver um resultado.</p><pre><code>function calcularProgresso(concluidas, total) {
-    return Math.round((concluidas / total) * 100);
+}</code></pre>
+                    <p>O console exibirá três mensagens, respeitando a ordem do array. O laço não apaga nem transforma os valores. Ele apenas permite executar uma instrução para cada item.</p>
+                </section>
+
+                <section id="funcoes">
+                    <p class="eyebrow">Organização</p>
+                    <h2>Funções, parâmetros e retorno</h2>
+                    <p>Uma função agrupa instruções relacionadas e pode ser chamada sempre que aquela tarefa for necessária. Os parâmetros recebem dados na chamada. A palavra <code>return</code> encerra a execução da função e devolve um resultado para quem a chamou.</p>
+                    <pre><code>function calcularProgresso(concluidas, total) {
+    const percentual = (concluidas / total) * 100;
+    return Math.round(percentual);
 }
 
 const resultado = calcularProgresso(3, 8);
-console.log(`${resultado}%`);</code></pre><div class="note"><strong>Importante:</strong> pratique cada estrutura separadamente e acompanhe os resultados pelo console do navegador.</div></section>
-                <section id="dom"><p class="eyebrow">Página interativa</p><h2>O que é o DOM</h2><p>Quando o navegador lê o HTML, ele cria uma representação organizada do documento chamada DOM, sigla para Document Object Model. Cada título, parágrafo, botão ou campo passa a ser um objeto que o JavaScript pode localizar e modificar.</p><p>O método <code>document.querySelector()</code> procura o primeiro elemento que corresponde a um seletor CSS. Por isso, a mesma forma de identificar tags, classes e IDs aprendida no CSS também é usada pelo JavaScript.</p><pre><code>const titulo = document.querySelector('h1');
-const cartao = document.querySelector('.cartao');
-const mensagem = document.querySelector('#mensagem');
+console.log(`${resultado}%`);</code></pre>
+                    <p>Sem <code>return</code>, a função ainda poderia executar ações, como escrever no console, mas não entregaria o percentual para a variável <code>resultado</code>. Instruções colocadas depois de um <code>return</code> executado não são alcançadas.</p>
+                    <div class="note"><strong>Leitura do exemplo:</strong> os valores <code>3</code> e <code>8</code> entram pelos parâmetros, o cálculo acontece dentro da função e o resultado arredondado volta para o ponto da chamada.</div>
+                </section>
 
-titulo.textContent = 'Projeto atualizado';
-cartao.classList.add('destaque');
-mensagem.setAttribute('aria-live', 'polite');</code></pre><div class="concept-grid"><div class="concept"><strong><code>textContent</code></strong><p>Lê ou substitui o conteúdo textual de um elemento.</p></div><div class="concept"><strong><code>classList</code></strong><p>Adiciona, remove ou alterna classes CSS.</p></div><div class="concept"><strong><code>setAttribute()</code></strong><p>Define ou modifica um atributo HTML.</p></div><div class="concept"><strong><code>value</code></strong><p>Acessa o valor atual de campos de formulário.</p></div></div><p>Antes de alterar um elemento, confirme que ele foi encontrado. Um seletor incorreto pode retornar <code>null</code>, indicando que nenhum elemento correspondente existe na página.</p></section>
-                <section id="eventos"><p class="eyebrow">Ações da pessoa usuária</p><h2>Eventos e <code>addEventListener()</code></h2><p>Um evento informa que algo aconteceu na página. O JavaScript pode aguardar esse acontecimento e executar uma função em resposta. Entre os eventos mais comuns estão <code>click</code>, <code>input</code> e <code>submit</code>.</p><pre><code>const botao = document.querySelector('#mostrar-mensagem');
-const mensagem = document.querySelector('#mensagem');
+                <section id="dom">
+                    <p class="eyebrow">Página interativa</p>
+                    <h2>JavaScript e a representação da página</h2>
+                    <p>Quando o navegador interpreta o HTML, ele cria o DOM, sigla para Document Object Model. Títulos, parágrafos, campos e botões passam a ser objetos que o JavaScript pode localizar, consultar e modificar.</p>
 
-botao.addEventListener('click', function () {
-    mensagem.textContent = 'Conteúdo atualizado com JavaScript!';
-    mensagem.classList.toggle('destaque');
-});</code></pre><p>No exemplo, o botão é selecionado pelo ID. Quando ocorre o clique, a função altera o texto e alterna uma classe. O HTML define os elementos, o CSS define a aparência da classe e o JavaScript coordena a interação.</p><h3>Eventos em formulários</h3><pre><code>const formulario = document.querySelector('#cadastro');
-const nome = document.querySelector('#nome');
+                    <h3>Seleção com <code>querySelector()</code></h3>
+                    <p><code>document.querySelector()</code> recebe um seletor CSS e retorna o primeiro elemento correspondente. O sinal <code>#</code> procura um ID, o ponto procura uma classe e o nome da tag procura um elemento HTML. Se não existir correspondência, o retorno será <code>null</code>.</p>
+                    <pre><code>const mensagem = document.querySelector("#mensagem");
+const primeiroCartao = document.querySelector(".cartao");
+const titulo = document.querySelector("h1");
 
-formulario.addEventListener('submit', function (evento) {
+if (mensagem !== null) {
+    console.log("Elemento encontrado");
+}</code></pre>
+
+                    <h3>Conteúdo, classes, atributos e campos</h3>
+                    <div class="concept-grid">
+                        <div class="concept"><strong><code>textContent</code></strong><p>Lê ou substitui o texto presente no elemento.</p></div>
+                        <div class="concept"><strong><code>classList</code></strong><p>Adiciona, remove ou alterna classes CSS.</p></div>
+                        <div class="concept"><strong><code>setAttribute()</code></strong><p>Define ou altera um atributo HTML.</p></div>
+                        <div class="concept"><strong><code>value</code></strong><p>Lê ou altera o valor atual de um campo.</p></div>
+                    </div>
+                    <pre><code>mensagem.textContent = "Olá!";
+mensagem.classList.add("destaque");
+mensagem.setAttribute("aria-live", "polite");
+
+const nome = document.querySelector("#nome");
+console.log(nome.value);</code></pre>
+                    <p><code>textContent</code> altera o texto. Ele não substitui o seletor nem cria um elemento novo. Para evitar erros, o código deve confirmar que o elemento foi encontrado antes de tentar modificá-lo.</p>
+                </section>
+
+                <section id="eventos">
+                    <p class="eyebrow">Ações da pessoa usuária</p>
+                    <h2>Eventos e <code>addEventListener()</code></h2>
+                    <p>Eventos representam acontecimentos na interface. <code>addEventListener()</code> associa uma função a um evento e mantém as responsabilidades organizadas.</p>
+                    <div class="concept-grid">
+                        <div class="concept"><strong><code>click</code></strong><p>Acontece quando a pessoa clica em um elemento, como um botão.</p></div>
+                        <div class="concept"><strong><code>input</code></strong><p>Acontece quando o valor de um campo é alterado durante a digitação.</p></div>
+                        <div class="concept"><strong><code>submit</code></strong><p>Acontece quando um formulário é enviado.</p></div>
+                        <div class="concept"><strong>Função ouvinte</strong><p>É executada quando o evento associado acontece.</p></div>
+                    </div>
+                    <pre><code>const botao = document.querySelector("#destacar");
+const mensagem = document.querySelector("#mensagem");
+
+botao.addEventListener("click", function () {
+    mensagem.classList.toggle("destaque");
+});</code></pre>
+
+                    <h3>Controle do envio com <code>preventDefault()</code></h3>
+                    <p>O comportamento padrão de um formulário é enviar os dados e navegar ou recarregar a página. Ao tratar <code>submit</code>, <code>evento.preventDefault()</code> interrompe temporariamente essa ação. Assim, o JavaScript pode conferir os dados e apresentar uma orientação antes de prosseguir.</p>
+                    <pre><code>formulario.addEventListener("submit", function (evento) {
     evento.preventDefault();
 
-    if (nome.value.trim() === '') {
-        alert('Informe seu nome.');
+    if (nome.value.trim() === "") {
+        mensagem.textContent = "Informe seu nome.";
         return;
     }
 
-    console.log(`Cadastro enviado por ${nome.value}`);
-});</code></pre><p>O evento <code>submit</code> acontece quando o formulário é enviado. <code>preventDefault()</code> interrompe temporariamente o comportamento padrão para que os dados possam ser conferidos. Essa validação melhora a experiência, mas aplicações reais também precisam validar os dados no servidor.</p></section>
-                <section id="revisao"><p class="eyebrow">Síntese</p><h2>Conecte linguagem e interface</h2><div class="concept-grid"><div class="concept"><strong>Dados</strong><p>Use variáveis e tipos adequados para representar informações.</p></div><div class="concept"><strong>Lógica</strong><p>Combine operadores, condições, repetições e funções.</p></div><div class="concept"><strong>Seleção</strong><p>Localize elementos do DOM por tag, classe ou ID.</p></div><div class="concept"><strong>Alteração</strong><p>Modifique texto, atributos, classes e valores com propósito.</p></div><div class="concept"><strong>Eventos</strong><p>Associe funções a ações como clique, digitação e envio.</p></div><div class="concept"><strong>Verificação</strong><p>Use o console para acompanhar valores e identificar erros.</p></div></div></section>
-                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Adicione interação ao projeto</h2><ol><li>Crie no HTML um campo de texto, um botão e uma área de mensagem.</li><li>Selecione os três elementos com <code>querySelector()</code>.</li><li>Use o evento <code>input</code> para acompanhar o valor digitado.</li><li>Use o evento <code>click</code> para atualizar o texto da mensagem e alternar uma classe CSS.</li><li>Inclua um formulário e trate o evento <code>submit</code>, impedindo o envio quando o campo estiver vazio.</li><li>Acompanhe os valores pelo console e teste seletores incorretos para compreender o retorno <code>null</code>.</li></ol></section>
+    mensagem.textContent = `Olá, ${nome.value}!`;
+});</code></pre>
+                    <div class="note"><strong>Validação em duas etapas:</strong> a conferência no navegador melhora a experiência, mas não protege sozinha uma aplicação. Quando houver servidor, os dados também deverão ser validados no back-end.</div>
+                </section>
+
+                <section class="interactive-lab" id="laboratorio" data-week2-demo>
+                    <p class="eyebrow">Laboratório interativo</p>
+                    <h2>Observe o JavaScript alterando a página</h2>
+                    <p>Use os controles e relacione o resultado visível aos conceitos apresentados nos exemplos.</p>
+
+                    <div class="demo-grid">
+                        <div class="demo-panel">
+                            <h3>Cálculo e condição</h3>
+                            <label for="demo-weeks">Semanas concluídas: <strong id="demo-weeks-value">2</strong></label>
+                            <input id="demo-weeks" type="range" min="0" max="8" value="2">
+                            <div class="demo-progress" aria-hidden="true"><span id="demo-progress-bar"></span></div>
+                            <p id="demo-progress-text" class="demo-result" aria-live="polite"></p>
+                            <div id="demo-technologies" class="demo-tags" aria-label="Tecnologias percorridas com um laço"></div>
+                        </div>
+
+                        <div class="demo-panel">
+                            <h3>DOM e eventos</h3>
+                            <form id="demo-form" novalidate>
+                                <label for="demo-name">Digite um nome</label>
+                                <input id="demo-name" type="text" autocomplete="off" placeholder="Exemplo: Ana">
+                                <div class="demo-actions">
+                                    <button type="button" id="demo-highlight">Alternar destaque</button>
+                                    <button type="submit">Enviar exemplo</button>
+                                </div>
+                            </form>
+                            <p id="demo-preview" class="demo-preview" aria-live="polite">A mensagem será atualizada durante a digitação.</p>
+                            <p id="demo-submit-status" class="demo-status" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="revisao">
+                    <p class="eyebrow">Síntese</p>
+                    <h2>Revise antes do questionário</h2>
+                    <p>Você está preparado quando consegue interpretar os exemplos e explicar cada comportamento com suas próprias palavras.</p>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>Variáveis</strong><p>Diferencie uma referência constante de um valor que precisa ser reatribuído.</p></div>
+                        <div class="concept"><strong>Valores</strong><p>Reconheça texto, número, booleano e lista.</p></div>
+                        <div class="concept"><strong>Fluxo</strong><p>Acompanhe cálculos, comparações, condições e repetições.</p></div>
+                        <div class="concept"><strong>Funções</strong><p>Identifique parâmetros e o valor devolvido por <code>return</code>.</p></div>
+                        <div class="concept"><strong>DOM</strong><p>Selecione um elemento e altere texto, classe, atributo ou valor.</p></div>
+                        <div class="concept"><strong>Eventos</strong><p>Distinga clique, digitação e envio de formulário.</p></div>
+                    </div>
+                </section>
+
+                <section class="practice" id="pratica">
+                    <p class="eyebrow">Projeto integrador</p>
+                    <h2>Adicione interação ao projeto</h2>
+                    <ol>
+                        <li>Escolha uma interação coerente com o tema iniciado na Semana 1.</li>
+                        <li>Selecione os elementos necessários com <code>querySelector()</code>.</li>
+                        <li>Use pelo menos dois eventos entre <code>click</code>, <code>input</code> e <code>submit</code>.</li>
+                        <li>Altere texto ou classe com JavaScript e utilize uma função com <code>return</code>.</li>
+                        <li>Se houver formulário, trate o envio com <code>preventDefault()</code> e valide campos vazios.</li>
+                        <li>Teste a interação e acompanhe valores pelo console.</li>
+                    </ol>
+                </section>
+
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-1.html">Semana 1: HTML e CSS</a><a href="semana-3.html">Semana 3: Git e PHP</a></nav>
             </article>
         </div>
     </main>
+
     <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 2 de 8</p></footer>
 </body>
 </html>
