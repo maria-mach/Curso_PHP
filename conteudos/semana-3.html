@@ -1,33 +1,236 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 3 · Git, GitHub e PHP</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Semana 3 · Git, GitHub e PHP</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/style.css?v=3">
+    <script src="../assets/week-3-demo.js?v=1" defer></script>
+</head>
 <body>
-    <header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a><nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-4.html">Próxima semana</a></nav></header>
+    <header class="site-header">
+        <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>Curso Full Stack</span></a>
+        <nav class="site-nav" aria-label="Navegação principal"><a href="../index.html#sobre">Sobre</a><a href="../index.html#programa">Programa</a><a href="../index.html#projeto">Projeto integrador</a><a class="nav-cta" href="semana-4.html">Próxima semana</a></nav>
+    </header>
+
     <main>
-        <header class="content-hero"><a class="breadcrumb" href="../index.html#programa">Curso / Semana 3</a><h1>Git, GitHub e introdução ao PHP</h1><p>Organize o histórico do projeto, publique o código em um repositório e prepare o ambiente para executar PHP.</p></header>
+        <header class="content-hero">
+            <a class="breadcrumb" href="../index.html#programa">Curso / Semana 3</a>
+            <h1>Git, GitHub e introdução ao PHP</h1>
+            <p>Aprenda a registrar versões do código, publicar um repositório e executar sua primeira página PHP em um servidor local.</p>
+        </header>
+
         <div class="study-layout">
-            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#git">Git</a><a href="#github">GitHub</a><a href="#php">PHP</a><a href="#fluxo">Fluxo de trabalho</a><a href="#pratica">Prática</a></aside>
+            <aside class="study-nav" aria-label="Nesta página"><strong>Nesta página</strong><a href="#versionamento">Versionamento</a><a href="#comandos">Comandos Git</a><a href="#github">GitHub</a><a href="#php">PHP e servidor</a><a href="#laboratorio">Laboratório</a><a href="#revisao">Revisão</a><a href="#pratica">Prática</a></aside>
+
             <article class="study-article">
-                <section id="git"><p class="eyebrow">Controle de versão</p><h2>Por que usar Git</h2><p>Git registra versões do projeto. Cada commit funciona como um ponto identificado no histórico e permite acompanhar o que mudou ao longo do desenvolvimento.</p><div class="concept-grid"><div class="concept"><strong>Repositório</strong><p>Pasta acompanhada pelo Git.</p></div><div class="concept"><strong>Commit</strong><p>Registro de um conjunto coerente de alterações.</p></div><div class="concept"><strong>Branch</strong><p>Linha de desenvolvimento do projeto.</p></div><div class="concept"><strong>Remote</strong><p>Referência para uma cópia hospedada, como o GitHub.</p></div></div><pre><code>git init
-git status
-git add .
-git commit -m "Cria estrutura inicial"</code></pre></section>
-                <section id="github"><p class="eyebrow">Repositório remoto</p><h2>Publicação no GitHub</h2><p>Git e GitHub não são a mesma coisa. Git é a ferramenta de versionamento; GitHub é um serviço que hospeda repositórios e facilita colaboração e apresentação do código.</p><pre><code>git branch -M main
+                <section id="versionamento">
+                    <p class="eyebrow">Controle de versão</p>
+                    <h2>Por que utilizar Git</h2>
+                    <p>Durante o desenvolvimento, os arquivos mudam muitas vezes. O Git é uma ferramenta de controle de versão: ele registra essas mudanças, organiza o histórico e permite identificar quando e por que cada alteração foi realizada.</p>
+                    <p>O Git trabalha no computador. Ele não precisa do GitHub para criar um repositório ou registrar commits. Depois, se desejar, você pode conectar o histórico local a um serviço remoto.</p>
+
+                    <div class="concept-grid">
+                        <div class="concept"><strong>Repositório</strong><p>Pasta acompanhada pelo Git, com arquivos e histórico de alterações.</p></div>
+                        <div class="concept"><strong>Commit</strong><p>Registro de um conjunto coerente de mudanças em determinado momento.</p></div>
+                        <div class="concept"><strong>Branch</strong><p>Linha de desenvolvimento que organiza uma sequência de commits.</p></div>
+                        <div class="concept"><strong>Remote</strong><p>Referência para uma cópia remota do repositório, como a hospedada no GitHub.</p></div>
+                    </div>
+
+                    <div class="note"><strong>Uma comparação útil:</strong> salvar um arquivo atualiza seu conteúdo no computador. Criar um commit registra uma versão identificada no histórico do Git.</div>
+                </section>
+
+                <section id="comandos">
+                    <p class="eyebrow">Fluxo local</p>
+                    <h2>Do repositório ao primeiro commit</h2>
+                    <p>Os quatro comandos abaixo formam um fluxo básico. Eles possuem funções diferentes e devem ser lidos como etapas: iniciar o acompanhamento, observar mudanças, selecionar arquivos e registrar uma versão.</p>
+
+                    <h3>1. Iniciar o repositório</h3>
+                    <p><code>git init</code> cria a estrutura interna utilizada pelo Git na pasta atual. Normalmente, esse comando é necessário apenas uma vez em cada repositório.</p>
+                    <pre><code>git init</code></pre>
+
+                    <h3>2. Consultar a situação dos arquivos</h3>
+                    <p><code>git status</code> informa quais arquivos são novos, quais foram modificados e quais já estão preparados para o próximo commit. Ele apenas consulta o estado: não registra nem envia arquivos.</p>
+                    <pre><code>git status</code></pre>
+
+                    <h3>3. Selecionar as alterações</h3>
+                    <p><code>git add</code> coloca as mudanças na área de preparação. Essa etapa define o que fará parte do próximo registro.</p>
+                    <pre><code>git add index.php
+
+# O ponto seleciona todas as mudanças da pasta:
+git add .</code></pre>
+
+                    <h3>4. Registrar uma versão</h3>
+                    <p><code>git commit</code> cria um ponto no histórico local com as alterações preparadas. A mensagem deve resumir o que foi feito de forma clara.</p>
+                    <pre><code>git commit -m "Cria primeira página PHP"</code></pre>
+
+                    <div class="concept-grid">
+                        <div class="concept"><strong>init</strong><p>Inicia o repositório na pasta.</p></div>
+                        <div class="concept"><strong>status</strong><p>Mostra a situação atual dos arquivos.</p></div>
+                        <div class="concept"><strong>add</strong><p>Seleciona mudanças para o próximo commit.</p></div>
+                        <div class="concept"><strong>commit</strong><p>Registra uma versão no histórico local.</p></div>
+                    </div>
+                </section>
+
+                <section id="github">
+                    <p class="eyebrow">Repositório remoto</p>
+                    <h2>Git e GitHub não são a mesma coisa</h2>
+                    <p><strong>Git</strong> é a ferramenta que controla versões. <strong>GitHub</strong> é uma plataforma on-line que hospeda repositórios Git e facilita compartilhamento, colaboração e apresentação do código.</p>
+                    <p>Depois de criar um repositório no GitHub, o endereço dele pode ser associado ao repositório local. Por convenção, essa referência costuma receber o nome <code>origin</code>.</p>
+                    <pre><code>git branch -M main
 git remote add origin URL_DO_REPOSITORIO
-git push -u origin main</code></pre><p>Mensagens de commit devem explicar a mudança realizada, por exemplo: <code>Adiciona página de contato</code> ou <code>Corrige validação do formulário</code>.</p></section>
-                <section id="php"><p class="eyebrow">Back-end</p><h2>Primeiro contato com PHP</h2><p>PHP é executado no servidor. O navegador recebe somente o resultado gerado. No ambiente local, o XAMPP fornece o servidor Apache e os recursos necessários.</p><pre><code>&lt;?php
+git push -u origin main</code></pre>
+                    <p><code>git push</code> envia para o repositório remoto os commits que já existem localmente. Ele não substitui <code>git add</code> nem <code>git commit</code>: primeiro as mudanças são registradas no computador e depois os commits são enviados.</p>
+
+                    <div class="concept-grid">
+                        <div class="concept"><strong>Histórico local</strong><p>É criado e consultado pelo Git no computador.</p></div>
+                        <div class="concept"><strong>Cópia remota</strong><p>Fica hospedada em um serviço como o GitHub.</p></div>
+                        <div class="concept"><strong>origin</strong><p>Nome convencional dado ao endereço remoto principal.</p></div>
+                        <div class="concept"><strong>push</strong><p>Envia commits locais para o repositório remoto.</p></div>
+                    </div>
+                </section>
+
+                <section id="php">
+                    <p class="eyebrow">Primeiro contato com o back-end</p>
+                    <h2>PHP é processado no servidor</h2>
+                    <p>HTML, CSS e JavaScript são interpretados pelo navegador. O PHP segue outro caminho: seu código é executado no servidor antes de a resposta chegar ao navegador. A pessoa usuária recebe somente o resultado produzido, geralmente em HTML.</p>
+
+                    <h3>Delimitadores e instruções</h3>
+                    <p>Um bloco PHP começa com <code>&lt;?php</code>. Quando o arquivo também possui HTML, o bloco pode ser encerrado com <code>?&gt;</code>. As instruções normalmente terminam com ponto e vírgula.</p>
+                    <pre><code>&lt;?php
+// Este é um comentário de uma linha.
+echo 'Minha primeira mensagem em PHP';
+?&gt;</code></pre>
+                    <p><code>echo</code> envia um texto ou valor para a resposta que será entregue ao navegador. O comentário explica o código e não aparece na página.</p>
+
+                    <h3>Variáveis e tipos de valores</h3>
+                    <p>Em PHP, os nomes das variáveis começam com <code>$</code>. Não é necessário declarar o tipo antes do nome: o PHP reconhece o tipo a partir do valor atribuído.</p>
+                    <pre><code>&lt;?php
+$nome = 'Ana';                    // string
+$semana = 3;                      // integer
+$cargaHoraria = 40.0;             // float
+$conteudoDisponivel = true;       // boolean
+$tecnologias = ['Git', 'PHP'];    // array
+?&gt;</code></pre>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>String</strong><p>Texto escrito entre aspas, como <code>'PHP'</code>.</p></div>
+                        <div class="concept"><strong>Integer e float</strong><p>Números inteiros ou com casas decimais.</p></div>
+                        <div class="concept"><strong>Boolean</strong><p>Valor lógico representado por <code>true</code> ou <code>false</code>.</p></div>
+                        <div class="concept"><strong>Array</strong><p>Estrutura que reúne vários valores em uma coleção.</p></div>
+                    </div>
+
+                    <h3>Concatenação e interpolação</h3>
+                    <p>O operador ponto (<code>.</code>) une textos e valores. Em uma string com aspas duplas, uma variável simples também pode ser inserida diretamente no texto.</p>
+                    <pre><code>&lt;?php
+$nome = 'Ana';
+$semana = 3;
+
+echo 'Olá, ' . $nome . '!';
+echo "Você está na semana $semana.";
+?&gt;</code></pre>
+
+                    <h3>PHP junto com HTML</h3>
+                    <p>Um arquivo <code>.php</code> pode alternar entre blocos PHP e marcação HTML. A forma abreviada <code>&lt;?= ... ?&gt;</code> exibe o resultado de uma expressão dentro do HTML.</p>
+
+                    <pre><code>&lt;?php
 $curso = 'Desenvolvimento Web Full Stack';
 $cargaHoraria = 40;
 ?&gt;
 
 &lt;h1&gt;&lt;?= htmlspecialchars($curso) ?&gt;&lt;/h1&gt;
-&lt;p&gt;Carga horária: &lt;?= $cargaHoraria ?&gt; horas.&lt;/p&gt;</code></pre><div class="note"><strong>Atenção:</strong> arquivos PHP precisam ser acessados por um servidor, como <code>http://localhost/projeto</code>. Abrir o arquivo diretamente não executa o código.</div></section>
-                <section id="fluxo"><p class="eyebrow">Do código ao navegador</p><h2>Entenda o fluxo de trabalho</h2><p>O Git acompanha os arquivos no computador, enquanto o GitHub recebe uma cópia do histórico por meio do <code>push</code>. Já o servidor local executa o PHP e devolve HTML ao navegador. São ferramentas diferentes, usadas em etapas complementares.</p><ol><li><code>git status</code> mostra arquivos novos ou modificados.</li><li><code>git add</code> seleciona as mudanças que entrarão no próximo registro.</li><li><code>git commit</code> cria um ponto no histórico local.</li><li><code>git push</code> envia commits para o repositório remoto.</li><li>Apache recebe uma requisição, executa o PHP e entrega o resultado ao navegador.</li></ol><h3>PHP no servidor</h3><p>O trecho entre <code>&lt;?php</code> e <code>?&gt;</code> é processado antes de a resposta sair do servidor. Variáveis PHP não aparecem no código-fonte recebido pelo navegador; apenas o texto ou HTML produzido por elas é enviado.</p><div class="note"><strong>Revise:</strong> saiba diferenciar Git de GitHub, explicar as etapas <code>status</code>, <code>add</code>, <code>commit</code> e <code>push</code>, e justificar por que um arquivo PHP precisa de servidor.</div></section>
-                <section class="practice" id="pratica"><p class="eyebrow">Prática sugerida</p><h2>Versione e execute o projeto</h2><ol><li>Inicie um repositório na pasta do projeto.</li><li>Registre a versão atual em um commit.</li><li>Crie um repositório remoto e envie a branch principal.</li><li>Prepare uma pasta no XAMPP e crie um <code>index.php</code>.</li><li>Mostre pelo PHP o nome e a carga horária do curso.</li></ol></section>
+&lt;p&gt;Carga horária: &lt;?= $cargaHoraria ?&gt; horas.&lt;/p&gt;</code></pre>
+                    <p><code>htmlspecialchars()</code> converte caracteres especiais antes de mostrar um texto no HTML. Esse cuidado se torna especialmente importante quando o valor vier de uma pessoa usuária ou de outra fonte externa.</p>
+
+                    <h3>O papel do XAMPP e do Apache</h3>
+                    <p>O XAMPP reúne ferramentas para criar um ambiente de desenvolvimento local. Entre elas está o Apache, que recebe a requisição do navegador, executa o arquivo PHP e devolve a resposta gerada.</p>
+                    <ol>
+                        <li>O arquivo <code>index.php</code> fica dentro de uma pasta servida pelo Apache, como <code>htdocs</code>.</li>
+                        <li>O navegador solicita uma URL, por exemplo <code>http://localhost/minha-pagina/</code>.</li>
+                        <li>O Apache encontra o arquivo e encaminha o código PHP para processamento.</li>
+                        <li>O resultado em HTML é devolvido ao navegador.</li>
+                    </ol>
+                    <div class="note"><strong>Atenção:</strong> abrir um arquivo PHP diretamente pelo explorador de arquivos não executa seu código. É necessário acessá-lo por um servidor configurado.</div>
+
+                    <h3>O que chega ao navegador</h3>
+                    <p>Variáveis como <code>$curso</code> e instruções entre <code>&lt;?php</code> e <code>?&gt;</code> permanecem no servidor. No exemplo, o navegador recebe o título e o parágrafo já preenchidos, não as instruções PHP originais.</p>
+
+                    <h3>Erros iniciais comuns</h3>
+                    <ul>
+                        <li>Abrir o arquivo diretamente em vez de usar um endereço com <code>localhost</code>.</li>
+                        <li>Salvar o arquivo fora da pasta atendida pelo Apache.</li>
+                        <li>Esquecer o ponto e vírgula no final de uma instrução.</li>
+                        <li>Acessar a página com o Apache desligado no painel do XAMPP.</li>
+                        <li>Usar uma variável com grafia diferente, pois <code>$curso</code> e <code>$Curso</code> são nomes distintos.</li>
+                    </ul>
+                </section>
+
+                <section class="interactive-lab" id="laboratorio" data-week3-demo>
+                    <p class="eyebrow">Laboratório interativo</p>
+                    <h2>Simule o fluxo de versionamento</h2>
+                    <p>Execute os comandos na ordem e observe o papel de cada etapa. Esta simulação não altera arquivos do seu computador.</p>
+
+                    <div class="demo-grid">
+                        <div class="demo-panel">
+                            <h3>Comandos disponíveis</h3>
+                            <div class="git-demo-actions" aria-label="Comandos Git simulados">
+                                <button type="button" data-git-command="init"><code>git init</code></button>
+                                <button type="button" data-git-command="status"><code>git status</code></button>
+                                <button type="button" data-git-command="add"><code>git add .</code></button>
+                                <button type="button" data-git-command="commit"><code>git commit</code></button>
+                                <button type="button" data-git-command="push"><code>git push</code></button>
+                            </div>
+                            <button class="git-demo-reset" type="button" data-git-reset>Reiniciar simulação</button>
+                        </div>
+
+                        <div class="demo-panel">
+                            <h3>Terminal simulado</h3>
+                            <div class="terminal-demo" aria-live="polite" aria-atomic="true">
+                                <span class="terminal-prompt">$</span>
+                                <p data-git-output>Comece com <code>git init</code>.</p>
+                            </div>
+                            <p class="demo-status" data-git-stage>Etapa atual: pasta comum.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="revisao">
+                    <p class="eyebrow">Síntese</p>
+                    <h2>Revise antes do questionário</h2>
+                    <p>Use esta lista para conferir se você consegue explicar os conceitos sem depender apenas da memorização dos comandos.</p>
+                    <div class="concept-grid">
+                        <div class="concept"><strong>Git</strong><p>Explique por que ele é uma ferramenta de controle de versão.</p></div>
+                        <div class="concept"><strong>Repositório</strong><p>Reconheça a pasta acompanhada e seu histórico.</p></div>
+                        <div class="concept"><strong>Fluxo local</strong><p>Diferencie <code>init</code>, <code>status</code>, <code>add</code> e <code>commit</code>.</p></div>
+                        <div class="concept"><strong>GitHub</strong><p>Diferencie a ferramenta Git da plataforma que hospeda repositórios.</p></div>
+                        <div class="concept"><strong>Push</strong><p>Entenda que ele envia commits já registrados para o remoto.</p></div>
+                        <div class="concept"><strong>PHP</strong><p>Explique por que o código precisa ser processado por um servidor.</p></div>
+                        <div class="concept"><strong>Sintaxe PHP</strong><p>Reconheça delimitadores, variáveis, tipos, <code>echo</code> e ponto e vírgula.</p></div>
+                        <div class="concept"><strong>Saída</strong><p>Diferencie concatenação, interpolação e exibição dentro do HTML.</p></div>
+                    </div>
+                </section>
+
+                <section class="practice" id="pratica">
+                    <p class="eyebrow">Prática sugerida</p>
+                    <h2>Crie, versione e execute uma página PHP</h2>
+                    <ol>
+                        <li>Crie uma pasta chamada <code>pratica-semana-3</code> dentro de <code>htdocs</code>.</li>
+                        <li>Adicione um <code>index.php</code> com variáveis para título, nome e número da semana.</li>
+                        <li>Mostre os valores com <code>echo</code>, concatenação e a forma abreviada <code>&lt;?= ... ?&gt;</code>.</li>
+                        <li>Acesse a página pelo endereço <code>http://localhost/pratica-semana-3/</code>.</li>
+                        <li>Inicie um repositório e consulte o estado dos arquivos.</li>
+                        <li>Prepare o arquivo e crie um commit com uma mensagem clara.</li>
+                        <li>Como etapa opcional, publique o repositório no GitHub.</li>
+                    </ol>
+                    <h3>Critérios para conferir sua prática</h3>
+                    <p>A página deve ser processada pelo Apache, exibir corretamente os valores definidos no PHP, misturar PHP e HTML sem erros e possuir pelo menos um commit no histórico local.</p>
+                </section>
+
                 <nav class="week-pagination" aria-label="Navegação entre semanas"><a href="semana-2.html">Semana 2: JavaScript</a><a href="semana-4.html">Semana 4: PHP e formulários</a></nav>
             </article>
         </div>
     </main>
+
     <footer class="site-footer"><strong>Desenvolvimento Web Full Stack</strong><p>Semana 3 de 8</p></footer>
 </body>
 </html>

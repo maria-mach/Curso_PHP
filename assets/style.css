@@ -134,6 +134,16 @@ code { font-family: Consolas, "Courier New", monospace; }
 .demo-preview { min-height: 58px; margin: 0; padding: 14px; background: var(--rose); border-left: 4px solid var(--berry); border-radius: 4px; transition: background-color .2s ease, color .2s ease; }
 .demo-preview.is-highlighted { background: var(--wine); color: #fff; }
 .demo-status { min-height: 27px; margin: 10px 0 0; color: var(--sage) !important; font-weight: 700; }
+.git-demo-actions { display: grid; gap: 9px; margin: 16px 0; }
+.git-demo-actions button, .git-demo-reset { min-height: 42px; padding: 9px 13px; border: 1px solid var(--berry); border-radius: 6px; background: #fff; color: var(--berry); font: inherit; font-weight: 800; text-align: left; cursor: pointer; }
+.git-demo-actions button:hover, .git-demo-reset:hover { border-color: var(--wine); color: var(--wine); }
+.git-demo-actions button code { background: transparent; color: inherit; }
+.git-demo-reset { width: 100%; background: var(--berry); color: #fff; text-align: center; }
+.git-demo-reset:hover { background: var(--wine); color: #fff; }
+.terminal-demo { min-height: 150px; padding: 18px; background: var(--code); border-left: 4px solid var(--coral); border-radius: 6px; color: #f8edf2; font-family: Consolas, "Courier New", monospace; }
+.terminal-demo .terminal-prompt { display: block; margin-bottom: 12px; color: #f4a4b7; font-weight: 800; }
+.terminal-demo p { margin: 0; color: #f8edf2; }
+.terminal-demo code { padding: 0; background: transparent; color: #fff; }
 .week-pagination { padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); }
 .week-pagination a { color: var(--berry); font-weight: 800; }
 .week-pagination .disabled { color: #aaa0a6; }
